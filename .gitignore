@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/ venv/
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.idea/ .vscode/
+
+# Große/unnötige Rohdaten – NICHT in Git
+data/raw/sdcard.work.img
+data/raw/fat16.img
+DWIN/**/*.rar
+DWIN/**/T5L factory demo_EK043/**
+
+# Temporäres
+*.tmp
+*.bak
+*.log
+
