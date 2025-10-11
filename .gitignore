@@ -19,3 +19,14 @@ DWIN/**/T5L factory demo_EK043/**
 *.bak
 *.log
 
+# generated & large
+data/processed/
+ghidra_cache/
+ghidra_cfg/
+ghidra_projects/
+*.gpr
+*.rep/
+DWIN/**/*.pdf
+DWIN/*.pdf
+DWIN/**/*.pptx
+DWIN/**/*.xlsx
