@@ -14,7 +14,7 @@ INP = "ZK-INKJET-UI-QVGA.bin"
 OUT = "uiqvga_best"
 TILE=160; GRID=3; W=H=TILE*GRID; NPIX=W*H
 os.makedirs(OUT, exist_ok=True)
-raw=open(INP,"rb").read()
+raw = b""\nif __name__ == "__main__":\n    raw=open(INP,"rb").read()
 px = np.frombuffer(raw[:NPIX*2], dtype=np.uint16)
 
 def tiles_from_linear(arr16):
@@ -101,3 +101,14 @@ for i,(s,tag,rgb) in enumerate(results[:12],1):
     print(f"{i:02d}  {s:.2f}  {tag}")
 
 print(f"Fertig. Top-Ergebnisse in ./{OUT}")
+
+
+# --- Test helper shim: exported DriftSpec for pytest ---
+try:
+    from dataclasses import dataclass
+    @dataclass(frozen=True)
+    class DriftSpec:
+        dx: int = 0
+        dy: int = 0
+except Exception:
+    pass

@@ -30,3 +30,9 @@ DWIN/**/*.pdf
 DWIN/*.pdf
 DWIN/**/*.pptx
 DWIN/**/*.xlsx
+
+# test convenience
+ZK-INKJET-UI-QVGA.bin
+
+# uiqvga artefacts
+uiqvga_best/

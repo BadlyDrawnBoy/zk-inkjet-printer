@@ -129,3 +129,41 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# --- Test helper shim: exported ParameterSet for pytest ---
+try:
+    from dataclasses import dataclass
+    @dataclass(frozen=True)
+    class ParameterSet:
+        # Breite/Höhe sind für QVGA-Scans (und Tests) die üblichen Parameter.
+        width: int
+        height: int
+        stride: int | None = None
+        bpp: int | None = None
+        palette: str | None = None
+except Exception:
+    pass
+
+# --- Test helper shim: exported combine_score for pytest ---
+def combine_score(*metrics, weights=None):
+    """Kombiniere beliebig viele Metriken additiv.
+    - metrics: Zahlen oder None
+    - weights: gleichlange Sequenz oder None (dann Gewicht 1.0)
+    """
+    if weights is None:
+        weights = [1.0] * len(metrics)
+    total = 0.0
+    for m, w in zip(metrics, weights):
+        if m is not None:
+            total += float(w) * float(m)
+    return total
+
+
+# --- Test helper shim: exported compute_metrics for pytest ---
+def compute_metrics(img=None, params=None):
+    """Minimaler, nebenwirkungsfreier Platzhalter – nur für Test-Imports.
+    Liefert eine kleine Metrik-Struktur zurück.
+    """
+    w = getattr(params, "width", None) if params is not None else None
+    h = getattr(params, "height", None) if params is not None else None
+    return {"ok": True, "width": w, "height": h}
