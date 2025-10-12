@@ -32,7 +32,7 @@ Add rows via PR when you consult a new document/tool.
 How to compute a checksum:
 ```bash
 sha256sum <file.pdf> >> docs/vendor_checksums.txt
-````
+```
 
 ## Legal
 
