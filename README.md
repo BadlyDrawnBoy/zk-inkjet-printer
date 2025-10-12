@@ -4,9 +4,9 @@
 - Code: MIT (see `LICENSE`)
 - Images/Docs: CC BY 4.0 (see `docs/IMAGE_LICENSE.md`)
 
-This repository contains resources and tooling for analyzing the firmware of the **ZK‑INKJET** (CHIKY/ZK1696‑class) handheld inkjet printer. The goal is to document proprietary file formats, decode UI graphics, and provide a foundation for scripted/remote printing experiments (e.g., via UART).
+This repository contains resources and tooling for analyzing the firmware of the **ZK‑INKJET** (Chiky Tech/ZK1696‑class) handheld inkjet printer. The goal is to document proprietary file formats, decode UI graphics, and provide a foundation for scripted/remote printing experiments (e.g., via UART).
 
-> **Project language:** English
+These printers are available for around €54 and can be found as Luqeeg (my version) handheld inkjet printers on Amazon, Aliexpress, etc. They make use of HP45(SI) ink cartridges. These Printers are sold ~54€ / can be found as Luqeeg(my version) Handheld Inkjet Printers on Amazon / Aliexpress / ... and relai on HP45(SI) inkjet cartridges.  
 
 ---
 
