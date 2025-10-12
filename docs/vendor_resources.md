@@ -47,3 +47,18 @@ Trademarks belong to their respective owners. This is a personal research projec
   forums.dwin-global.com/index.php/forums/topic/application-instructions%EF%BC%9At5t5l-dgusii-serial-communication-protocol/
 - **Example dev board (EKT043B)** — product page (often links a resource pack).  
   www.dwin.com.cn/product_detail_4948245.html
+
+## Direct links (official)
+- DWIN Global – Kernel upgrade: https://de.dwin-global.com/kernel-upgrade/
+- DWIN Global – Development guide index: https://de.dwin-global.com/development-guide/
+
+### Kernel upgrade kits: interesting files to inspect (names seen in vendor kit)
+- `STARTUP_M5.A51` / `STARTUP_M5.zip` — 8051 startup code labeled **M5** (helpful for reset/interrupt model).
+- `T5L51.bin` — small binary built via `srec_cat` from `New_C_8283.hex` in the sample.
+- Source highlights: `Uart.c`, `Parameter_Config.h`, `Dwin_T5L1H.h` (`FOSC = 206438400UL`), `crc16.c`.
+- Protocol bytes in sample comments: header `5A A5`, ops `0x82` (write) / `0x83` (read), optional CRC per-UART.
+
+### Panel candidate (unconfirmed)
+- EKT035B (3.5", **480×320**, IPS, TA/DGUS-II): https://ecdn6.globalso.com/upload/p/1355/source/2025-09/EKT035B.pdf  
+  *Note:* Matches our observed 480×… class; not confirmed for this exact unit.
+
