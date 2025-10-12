@@ -60,7 +60,7 @@ All upgrade literals live on `3:/` (the U-disk). No upgrade `.bin` strings are p
 ## Cross-reference trail
 
 * `grep -n "\.bin" data/processed/app_strings_report.md` – reproduces the offsets above.
-* `objdump -D -b binary -marm --adjust-vma=0x217E820 /tmp/update_name_lit.bin` – shows the literal pool of filename pointers.
+* `objdump -D -b binary -marm --adjust-vma=0x37E820 /tmp/update_name_lit.bin` – shows the literal pool of filename pointers.
 * `objdump -D -b binary -marm --adjust-vma=0x25A900 /tmp/update_compare.bin` – displays the memcmp loops at `VA 0x0025A930 (file+0x0005A930)`, `VA 0x0025A990 (file+0x0005A990)`, and `VA 0x0025A9F0 (file+0x0005A9F0)`.
 * `objdump -D -b binary -marm --adjust-vma=0x2C2800 /tmp/found_handler.bin` – verifies that the successful branch ultimately drives handler `VA 0x002C28D0 (file+0x000C28D0)`.
 * `objdump -D -b binary -marm --adjust-vma=0x2C4700 /tmp/notfound_handler.bin` – confirms the failure branch ends in handler `VA 0x002C47F0 (file+0x000C47F0)`.
