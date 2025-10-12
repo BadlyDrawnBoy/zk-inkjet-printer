@@ -43,3 +43,6 @@ export/*.tgz
 DWIN/
 vendor/
 
+
+sdcard.work.img
+sdcard.work.img.xz
