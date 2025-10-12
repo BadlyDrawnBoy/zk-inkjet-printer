@@ -111,4 +111,4 @@ If `GHIDRA_HOME` is set, `make gh` regenerates `data/processed/io_callgraph.json
 
 ## Screenshot
 
-![UI QVGA](data/processed/UI_QVGA_best.png)
+![UI QVGA](data/processed/UI_QVGA_480x480.png)
