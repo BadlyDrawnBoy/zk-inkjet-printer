@@ -291,7 +291,7 @@ Current slot contents (mirrored in `docs/offset_catalog.md`): `queue_ctrl+0x8` c
 
 ### Suggested Next Moves
 1. Resolve the vtable literal at `VA 0x002113CC (file+0x000113CC)` and locate who installs actual handlers into `[queue_ctrl+0x10]`/`[queue_ctrl+0x18]` so we can trace where `VA 0x00211430 (file+0x00011430)` is invoked.
-2. Analyse `VA 0x00229D78 (file+0x00029D78)`’s parameters (stack layout around `[sp+0x0]…[sp+0x48]`) to document the API that produces queue entries—this will make it easier to recreate or patch the free-block data path.
+2. Analyse `VA 0x00229D78 (file+0x00029D78)`’s parameters (stack layout around `[sp+0x0]...[sp+0x48]`) to document the API that produces queue entries—this will make it easier to recreate or patch the free-block data path.
 3. Investigate `VA 0x00211AD8 (file+0x00011AD8)` to confirm whether it clears the scratch buffer or performs additional bookkeeping after each dispatch; note any MMIO writes it emits.
 4. Optional RAM dump scaffold: add a `BL maybe_dump` at the tail of `queue_init_and_dispatch` (`VA 0x0021135E (file+0x0001135E)`) guarded by a marker file (`3:/DUMP.MRK`). The helper would call the existing file I/O wrappers around `VA 0x00216B78 (file+0x00016B78)`/`VA 0x00215C64 (file+0x00015C64)` to emit two slices – `0x244F00..0x245000` (`ram_qctrl.bin`) and `0x217E800..0x217EC00` (`ram_lit.bin`) – then disable itself via a static `dump_done` flag.
 
@@ -315,3 +315,17 @@ Current slot contents (mirrored in `docs/offset_catalog.md`): `queue_ctrl+0x8` c
 2. Resolve the relocation literal at `VA 0x002113CC (file+0x000113CC)` once we have relocation data (or a RAM dump) to confirm which routine is being registered as the node vtable.
 3. Map the remaining fields inside `queue_ctrl` (offsets `0x4`, `0x8`, `0x10`, etc.) by instrumenting their readers in `VA 0x00211430 (file+0x00011430)` so the histogram output in the orchestrator can be tied back to concrete queue state.
 4. Optional: plan a “display tap” around `VA 0x00248610 (file+0x00048610)` / `VA 0x00248504 (file+0x00048504)` – either a NOP stub (mute DMA) or a RAM copy of the `(ptr,len)` arguments before tail-calling the original helper – so we can inspect UI payloads without JTAG once function ownership is confirmed.
+
+## Findings
+
+**Verified:**
+- VA 0x0037E820 (file+0x0017E820) pointer pool drives matcher; see evidence in docs/update_file_rules.md.
+- VA 0x0025A930 / 0x0025A990 / 0x0025A9F0 loops branch to VA 0x0020E158 (file+0x0000E158) before queue install (evidence in docs/update_file_rules.md, docs/analysis_traceability.md).
+- VA 0x0020EAEC (file+0x0000EAEC) orchestrator plus Thumb helpers at VA 0x0020EA5A and VA 0x00211356 confirmed via objdump snippets.
+- VA 0x00244F8C (file+0x00044F8C) queue controller usage captured in docs/offset_catalog.md evidence block.
+- VA 0x002BFDDC (file+0x000BFDDC) validator and guard pair VA 0x002C1C10/VA 0x002C1C1C verified (docs/update_file_rules.md, docs/analysis_traceability.md).
+- VA 0x0022C9E0 (file+0x0002C9E0) and VA 0x0022CA18 (file+0x0002CA18) flash writer stages observed in ARM windows.
+
+**Needs follow-up:**
+- queue_ctrl+0x10 writer still unknown; evidence block pending despite queue_ctrl+0x8 default being confirmed.
+- VA 0x00208592 (file+0x00008592) remains relocation placeholder (no executable bytes in binary dump).

@@ -9,7 +9,7 @@ Addressing conventions: see `docs/CONVENTIONS.md`.
 | `ZK-INKJET-NANO-BOOT.bin` | `0xF8` | Aligned memory copy routine (`memcpy`-style burst with residual handling). | `data/processed/boot_static_notes.md`, `boot_disasm.txt` (step 7) |
 | `ZK-INKJET-NANO-BOOT.bin` | `0x210` | Unaligned memory copy variant using shifts to assemble words. | `data/processed/boot_static_notes.md` |
 | `ZK-INKJET-NANO-BOOT.bin` | `0x348` | Division/modulo helper (`__aeabi_uidivmod` equivalent). | `data/processed/boot_static_notes.md` |
-| `ZK-INKJET-NANO-BOOT.bin` | `0x52C` | Display command sequencer issuing T5L register writes (0x2A…0xE0). | `data/processed/boot_static_notes.md` |
+| `ZK-INKJET-NANO-BOOT.bin` | `0x52C` | Display command sequencer issuing T5L register writes (0x2A...0xE0). | `data/processed/boot_static_notes.md` |
 | `ZK-INKJET-NANO-BOOT.bin` | `0x7C8` | Peripheral toggle: sets/clears bit 1 at `[base + 0x7C]` (likely watchdog/backlight). | `data/processed/boot_static_notes.md` |
 | `VA 0x0021282C (file+0x0001282C)` | `VA 0x0021282C (file+0x0001282C)` | Format string for UI bitmap exports (`3:/inkjet-ui-%Y%m%d ... .bmp`). | `data/processed/app_strings_report.md` |
 | `VA 0x0025D130 (file+0x0005D130)` | `VA 0x0025D130 (file+0x0005D130)` | Path reference to `0:/ZK-INKJET-RES-HW.zkml` (resource mount). | `data/processed/app_strings_report.md` |
@@ -20,7 +20,7 @@ Addressing conventions: see `docs/CONVENTIONS.md`.
 | `ZK-INKJET-NANO-APP.bin` | `handler_ptr 0x2C28D1 (Thumb) → VA 0x002C28D0 (file+0x000C28D0)` | Upgrade-found path; stages buffers through helpers at `0xC7018/0xC70F4/0xC7334`, then queues the notifier via `VA 0x002C61DC (file+0x000C61DC)`. | `objdump --start-address=0xC2880` (file+0x000C2880), `docs/app_message_handlers.md` |
 | `VA 0x002C7018 (file+0x000C7018)` | `VA 0x002C7018 (file+0x000C7018)` | Part of bundled double-precision helper set (`__aeabi` style normalise/multiply) used by upgrade handler to compute glyph coordinates. | `objdump --start-address=0xC6FE0` (file+0x000C6FE0), `docs/app_message_handlers.md` |
 | `VA 0x0028ACF0 (file+0x0008ACF0)` | `VA 0x0028ACF0 (file+0x0008ACF0)` | Resource selection routine: scans pointer tables, runs `memcmp` (`VA 0x0020E158 (file+0x0000E158)`) against file names, and prepares bitmap buffers before notifier runs. | `objdump --start-address=0x8AC80` (file+0x0008AC80), `docs/app_message_handlers.md` |
-| `ZK-INKJET-NANO-APP.bin` | `handler_ptr handler_ptr 0x2C3A95 (Thumb) → VA 0x002C3A94 (file+0x000C3A94) → file 0xC3A94` | Flag 3 error handler (Thumb); rotates queue indices and calls helper `VA 0x00229D34 (file+0x00029D34)` before returning, used for “Openen mislukt…” strings. | `objdump --start-address=0xC3A80 -M force-thumb` (file+0x000C3A80), `docs/app_message_handlers.md` |
+| `ZK-INKJET-NANO-APP.bin` | `handler_ptr handler_ptr 0x2C3A95 (Thumb) → VA 0x002C3A94 (file+0x000C3A94) → file 0xC3A94` | Flag 3 error handler (Thumb); rotates queue indices and calls helper `VA 0x00229D34 (file+0x00029D34)` before returning, used for “Openen mislukt...” strings. | `objdump --start-address=0xC3A80 -M force-thumb` (file+0x000C3A80), `docs/app_message_handlers.md` |
 | `VA 0x0021138A (file+0x0001138A)` | `VA 0x0021138A (file+0x0001138A)` | Queue initialiser for the upgrade free-block list; allocates a 0x20-byte node when `[queue_ctrl]` is null and writes the head pointer back to the controller. | `objdump -M force-thumb --adjust-vma=0x211380 /tmp/queue_init.bin`, `docs/analysis_traceability.md` §19 |
 | `VA 0x002113E4 (file+0x000113E4)` | `VA 0x002113E4 (file+0x000113E4)` | Accessor that returns the queue controller pointer (literal resolves to VA ≈ `VA 0x00244F8C (file+0x00044F8C)`). | `objdump -M force-thumb --adjust-vma=0x211380 /tmp/queue_init.bin`, `docs/analysis_traceability.md` §19 |
 | `VA 0x00211A88 (file+0x00011A88)` | `VA 0x00211A88 (file+0x00011A88)` | Thumb routine that logs `\"direct: can't open\"` when SD/FAT access fails; wraps helper at `VA 0x00211A1E (file+0x00011A1E)`. | `objdump --start-address=0x11A80 -M force-thumb` (file+0x00011A80), `docs/storage_probe_notes.md` |
@@ -60,5 +60,31 @@ Addressing conventions: see `docs/CONVENTIONS.md`.
 | `ZK-INKJET-RES-HW.zkml` | `file+0x000EB000` | Candidate chunk region (aligned, medium entropy). | `data/processed/reshw_probe_report.md`, sample `reshw_02_0xEB000.bin` |
 | `ZK-INKJET-RES-HW.zkml` | `file+0x0010A000` | Candidate chunk region (top-ranked by probe). | `data/processed/reshw_probe_report.md`, sample `reshw_01_0x10A000.bin` |
 | `ZK-INKJET-RES-HW.zkml` | `file+0x00164000` | Candidate chunk region near end of file. | `data/processed/reshw_probe_report.md`, sample `reshw_06_0x164000.bin` |
+
+### Evidence snippets
+
+- **Queue controller – `VA 0x00244F8C (file+0x00044F8C)` (ARM)**  
+  ```text
+  00244f8c: e59d22e8  ldr r2, [sp, #744]
+  00244f94: ebffb877  bl  0x233178
+  00244fa0: e28d0fba  add r0, sp, #744
+  00244fb8: ebffbdaf  bl  0x23467c
+  ```
+
+- **Shared notifier – `VA 0x002302EC (file+0x000302EC)` (ARM)**  
+  ```text
+  002302ec: e92d4fff  push {r0-r11, lr}
+  002302f4: e59d02bc  ldr  r0, [sp, #700]
+  00230304: e3500000  cmp  r0, #0
+  00230318: eb023e74  bl   0x2bfcf0
+  ```
+
+- **Allocator helper – `VA 0x0020C798 (file+0x0000C798)` (Thumb)**  
+  ```text
+  0020c798: b570       push {r4, r5, r6, lr}
+  0020c79c: f002 e94c  blx  0x20ea38
+  0020c7a4: 300b       adds r0, #11
+  0020c7aa: 42b4       cmp  r4, r6
+  ```
 
 _Add further offsets as soon as disassembly or probing reveals new actionable locations._

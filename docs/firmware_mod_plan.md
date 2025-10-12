@@ -12,7 +12,7 @@ This roadmap tracks the critical paths toward gaining control over the ZK-INKJET
   - Evidence: `data/processed/boot_static_notes.md`, `docs/boot_analysis_methodology.md`
   - Status: ✅ entry, stack setup, relocation, display init mapped.
   - Next actions:
-    - [ ] Lift relocation table references (`0X60` block) and cross-map into APP.bin to locate the main entry function.
+    - [ ] Lift relocation table references (`0x60` block) and cross-map into APP.bin to locate the main entry function.
     - [ ] Identify where SRAM buffers are populated (possible patch points for injected code).
 
 - **Stage-1 Boot (ROM/SD)**  
@@ -24,11 +24,11 @@ This roadmap tracks the critical paths toward gaining control over the ZK-INKJET
 - **Resource/Update Strings**
   - Evidence: `data/processed/app_strings_report.md`, `data/processed/app_message_table.json`, `docs/app_message_handlers.md`
   - Key offsets to investigate:
-    - `0X1282C`: Dynamic bitmap naming (`3:/inkjet-ui-%Y%m%d ...`)
-    - `0X5D134`: Paths referencing `ZK-INKJET-RES-HW.zkml`
+    - `VA 0x0021282C (file+0x0001282C)`: Dynamic bitmap naming (`3:/inkjet-ui-%Y%m%d ...`)
+    - `VA 0x0025D134 (file+0x0005D134)`: Paths referencing `ZK-INKJET-RES-HW.zkml`
     - UART hints (`baud`, `TTY`, etc.) – none found yet; requires deeper scan.
-    - Message handler table at `0X1D3E00` (triples `<handler_ptr, string_ptr, flag>`). Pointers are linked at base `0X20_0000`; e.g., “update complete” → handler `0X2C2049 (Thumb) → VA 0X2C2048 (file+0XC2048)`, “Geen upgradebestand…” → `0X2C47F1 (Thumb) → VA 0X2C47F0 (file+0XC47F0)`. All paths eventually call the shared notifier at `VA 0X2302EC (file+0X302EC)`, which prepares a 0X200-byte buffer and drives helper routines at `0X22714C`, `0X2C64FC`, etc.
-    - Hardware commit routine at `0X30E04` (writes to `0XB100D000` registers) finalises display updates.
+    - Message handler table at `VA 0x003D3E00 (file+0x001D3E00)` (triples `<handler_ptr, string_ptr, flag>`). Pointers are linked at base `0x20_0000`; e.g., “update complete” → handler `0x2C2049 (Thumb) → VA 0x002C2048 (file+0x000C2048)`, “Geen upgradebestand…” → `0x2C47F1 (Thumb) → VA 0x002C47F0 (file+0x000C47F0)`. All paths eventually call the shared notifier at `VA 0x002302EC (file+0x000302EC)`, which prepares a 0x200-byte buffer and drives helper routines at `VA 0x0022714C (file+0x0002714C)`, `VA 0x002C64FC (file+0x000C64FC)`, etc.
+    - Hardware commit routine at `VA 0x00230E04 (file+0x00030E04)` (writes to `MMIO 0xB100D000` registers) finalises display updates.
   - Next actions:
     - [ ] Disassemble handlers referencing these strings to confirm file-load routines.
     - [ ] Hook update-related strings to identify OTA or SD-based upgrade flow.
@@ -50,14 +50,14 @@ This roadmap tracks the critical paths toward gaining control over the ZK-INKJET
 - **Hardware Resources (`ZK-INKJET-RES-HW.zkml`)**
   - Evidence: `data/processed/reshw_probe_report.md`, sample extracts under `data/processed/samples/`
   - Next actions:
-    - [ ] Parse candidate headers at offsets `file+0XA3000`, `file+0XB5000`, `file+0XD7000`, `file+0XEB000`, `file+0X10A000`, `file+0X164000`.
+    - [ ] Parse candidate headers at offsets `file+0x000A3000`, `file+0x000B5000`, `file+0x000D7000`, `file+0x000EB000`, `file+0x0010A000`, `file+0x00164000`.
     - [ ] Identify chunk descriptors (length, checksum) and confirm if assets are raw / compressed.
     - [ ] Once TOC is mapped, attempt controlled replacement of a resource block.
 
 ## Supporting Resources
 - `docs/analysis_traceability.md` — step-by-step command index for reproducing current findings.
 - `docs/archive/documentation-20251009.md` — historic background (boot → APP → resource flow); update when a refreshed deep-dive is ready.
-- Vendor manuals under `DWIN/` — cross-reference hardware register ranges used in bootloader (`0XB0000000` base).
+- Vendor manuals under `DWIN/` — cross-reference hardware register ranges used in bootloader (MMIO base `0xB0000000`).
 
 ## Documentation Actions
 - [ ] Produce an updated end-to-end analysis to supersede `docs/archive/documentation-20251009.md`.
