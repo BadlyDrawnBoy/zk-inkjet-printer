@@ -46,3 +46,5 @@ vendor/
 
 sdcard.work.img
 sdcard.work.img.xz
+
+export/
