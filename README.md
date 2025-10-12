@@ -1,40 +1,114 @@
 # ZK‑INKJET Firmware Reverse Engineering
 
-This repository contains resources and tooling for analysing the firmware of the **ZK‑INKJET** handheld inkjet printer. It aims to extract and document proprietary  file formats, decode the user interface graphics, and provide a  foundation for further research and automation with coding agents.
+This repository contains resources and tooling for analyzing the firmware of the **ZK‑INKJET** (CHIKY/ZK1696‑class) handheld inkjet printer. The goal is to document proprietary file formats, decode UI graphics, and provide a foundation for scripted/remote printing experiments (e.g., via UART).
+
+> **Project language:** English
+
+---
 
 ## Directory structure
 
-- **data/raw/** – raw binary files extracted from the printer's SD card. These include the application module (`ZK-INKJET-NANO-APP.bin`), boot loader (`ZK-INKJET-NANO-BOOT.bin`), UI graphics (`ZK-INKJET-UI-QVGA.bin`), hardware resource container (`ZK-INKJET-RES-HW.zkml`) and the FAT/SD card images (`fat16.img`, `sdcard.work.img`). The large `.img` files are SD card dumps and may be excluded or stored via Git LFS if  not needed, as the ext4 rootfs they contain is not relevant to the  current firmware.
-- **data/processed/** – outputs from the analysis, such as the reconstructed 480×480 UI image and the GUI font container (`ZK-INKJET-GUI-RES.zkml`).
-- **docs/** – documentation files. `documentation.md` is a combined report containing the firmware analysis and the  UI/graphics reconstruction method. The original files are preserved for  reference.
-- **scripts/** – python scripts used for carving resources, decoding the UI QVGA blob, tuning parameters, and re-extraction. Each script has a short  description.
-- **DWIN/** – vendor documentation and demo files for the T5L display controller  (EKT043 kit). These are optional references for understanding the  hardware platform.
+* **data/raw/** – raw binaries from the device/SD card:
 
-## Usage
+  * `ZK-INKJET-NANO-APP.bin`, `ZK-INKJET-NANO-BOOT.bin` (main app + bootloader)
+  * `ZK-INKJET-UI-QVGA.bin` (UI graphics blob)
+  * `ZK-INKJET-RES-HW.zkml` (hardware resource container)
+  * `fat16.img` (FAT partition image)
+  * `sdcard.work.img` (full SD image, **not tracked in git**)
+  * Checksums for repo-tracked files: `CHECKSUMS.repo.txt`
+  * Checksums for SD image (release asset): `CHECKSUMS.sd.txt`
 
-To decode the user interface graphics:
+* **data/processed/** – analysis outputs (e.g., reconstructed 480×480 UI image `UI_QVGA_480x480.png`, `ZK-INKJET-GUI-RES.zkml`, callgraph JSONs).
 
+* **docs/** – documentation and notes (analysis methods, offset catalogs, update pipeline rules, etc.).
+
+* **scripts/** – Python tools for carving resources, decoding the UI QVGA blob, tuning parameters, scanning strings, generating callgraphs, etc.
+
+> Vendor SDKs (e.g., DWIN) are **not** redistributed here. See `docs/vendor_resources.md` for links.
+
+---
+
+## Quickstart
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+make test   # quick smoke test
+# optional: set GHIDRA_HOME and try to refresh callgraph outputs
+# export GHIDRA_HOME=/path/to/ghidra
+# make gh
 ```
-sh# Install dependencies (Python 3, numpy, Pillow)
+
+### Downloads & verification
+
+* Compressed SD image is published under **Releases** (e.g., `v0.1.0-alpha1`).
+* Verify the release asset locally:
+
+```bash
+sha256sum -c data/raw/CHECKSUMS.sd.txt
+# expects: data/raw/sdcard.work.img.xz: OK
+```
+
+* Verify repo‑tracked artifacts:
+
+```bash
+sha256sum -c data/raw/CHECKSUMS.repo.txt
+```
+
+> The raw `sdcard.work.img` and its compressed form are **ignored** by git to keep the repo lean. Use the Release download instead.
+
+---
+
+## Usage (UI decode example)
+
+```bash
+# Install minimal dependencies
 pip install numpy pillow
 
-# Run the smart decode script on the UI QVGA binary
-python3 scripts/uiqvga_smart_decode.py --input data/raw/ZK-INKJET-UI-QVGA.bin --output data/processed/UI_QVGA_480x480.png
+# Decode UI QVGA blob → 480×480 PNG
+python3 scripts/uiqvga_smart_decode.py \
+  --input  data/raw/ZK-INKJET-UI-QVGA.bin \
+  --output data/processed/UI_QVGA_480x480.png
+
+# Optional: brute-force parameter search to minimize seams/text drift
+python3 scripts/uiqvga_hypersearch.py --input data/raw/ZK-INKJET-UI-QVGA.bin
 ```
 
-Additional scripts such as `uiqvga_hypersearch.py` allow brute-force tuning of the odd-line shift, drift and column offsets to minimise seams and text misalignment.
+Additional helpers: `uiqvga_autotune.py`, `uiqvga_decode_sweep.py`, resource carvers, string scanners, and callgraph generators.
 
-## Tests & Export
-Activate your virtualenv (e.g., `source .venv/bin/activate`), then run `make test`, `make lint-docaddrs`, and `make export`.
-These helpers wrap `pytest -q`, doc address linting, and the export bundle (`export/zk-inkjet-export-<UTCSTAMP>.tgz`) with caches filtered out.
-Set `GHIDRA_HOME` and run `make gh` to refresh `data/processed/io_callgraph.json`; when Ghidra is absent the target skips quietly.
+---
 
-## Coding agents
+## Tests & export
 
-This repository is structured to be agent-friendly. A coding agent can:
+Activate your venv (e.g., `source .venv/bin/activate`), then:
 
-- Load `docs/documentation.md` to understand the firmware structure, boot process, resource containers and the current state of the UI reconstruction.
-- Inspect the raw binaries in `data/raw/` to implement custom decoders for proprietary formats.
-- Use the provided Python scripts under `scripts/` as a starting point or reference for implementing new algorithms.
+```bash
+make test            # wraps pytest -q
+make lint-docaddrs   # verify VA/file address references in docs
+make export          # builds export/zk-inkjet-export-<UTCSTAMP>.tgz (caches filtered)
+```
 
-Please consult `docs/documentation.md` for a complete overview of the research, findings and next steps.
+If `GHIDRA_HOME` is set, `make gh` regenerates `data/processed/io_callgraph.json`. When Ghidra is absent, the target is skipped.
+
+> **Ghidra notes:** Headless analysis is optional; some environments produce 0‑byte projects due to DB/version mismatches. Prefer the GUI project and exporting analysis outputs (JSON/MD) rather than committing `.gpr`.
+
+---
+
+## For coding agents
+
+* Start with `docs/` (analysis methodology, update rules, offset catalogs) and `data/processed/` outputs.
+* Use `scripts/` as reference implementations for UI decoding & resource parsing.
+* Planned next step: a minimal **UART hook** by repurposing a benign UI handler (see `docs/HACKING_UART.md`).
+
+---
+
+## Legal / vendors
+
+* Trademarks belong to their respective owners.
+* Files here are provided for research and interoperability. No vendor SDKs are redistributed; see `docs/vendor_resources.md` for official sources.
+
+---
+
+## Screenshot
+
+![UI QVGA](data/processed/UI_QVGA_best.png)
