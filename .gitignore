@@ -39,3 +39,7 @@ uiqvga_best/
 
 # export artifacts
 export/*.tgz
+
+DWIN/
+vendor/
+
