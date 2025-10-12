@@ -45,11 +45,9 @@ All upgrade literals live on `3:/` (the U-disk). No upgrade `.bin` strings are p
   0025a930: ebfece08  bl  0x20e158
   0025a934: e3500000  cmp r0, #0
   0025a938: 0a000045  beq 0x25aa54
-  ...
   0025a990: ebfecdf0  bl  0x20e158
   0025a994: e3500000  cmp r0, #0
   0025a998: 0a00002f  beq 0x25aa5c
-  ...
   0025a9f0: ebfecdd8  bl  0x20e158
   0025a9f4: e3500000  cmp r0, #0
   0025a9f8: 0a000019  beq 0x25aa64
