@@ -24,6 +24,10 @@ python3 scripts/uiqvga_smart_decode.py --input data/raw/ZK-INKJET-UI-QVGA.bin --
 
 Additional scripts such as `uiqvga_hypersearch.py` allow brute-force tuning of the odd-line shift, drift and column offsets to minimise seams and text misalignment.
 
+## Tests & Export
+Activate your virtualenv (e.g., `source .venv/bin/activate`), then run `make test`, `make lint-docaddrs`, and `make export`.
+These helpers wrap `pytest -q`, doc address linting, and the export bundle (`export/zk-inkjet-export-<UTCSTAMP>.tgz`) with caches filtered out.
+
 ## Coding agents
 
 This repository is structured to be agent-friendly. A coding agent can:
