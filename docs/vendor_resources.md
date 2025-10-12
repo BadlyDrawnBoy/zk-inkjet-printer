@@ -37,3 +37,13 @@ sha256sum <file.pdf> >> docs/vendor_checksums.txt
 ## Legal
 
 Trademarks belong to their respective owners. This is a personal research project (interoperability). Do not upload vendor packages here; link to official sources instead.
+
+### Direct links (official)
+- **DWIN Tool page (DGUS, drivers, etc.)** — DGUS downloads and related tools.  
+  dwin-global.com/tool-page/  <!-- official tool hub -->
+- **Development guides index** — assorted DWIN development guides (T5/T5L).  
+  dwin-global.com/development-guide/
+- **DGUSII serial protocol (T5/T5L)** — forum topic with attachment (0x82/0x83 commands).  
+  forums.dwin-global.com/index.php/forums/topic/application-instructions%EF%BC%9At5t5l-dgusii-serial-communication-protocol/
+- **Example dev board (EKT043B)** — product page (often links a resource pack).  
+  www.dwin.com.cn/product_detail_4948245.html
