@@ -112,3 +112,8 @@ If `GHIDRA_HOME` is set, `make gh` regenerates `data/processed/io_callgraph.json
 ## Screenshot
 
 ![UI QVGA](data/processed/UI_QVGA_480x480.png)
+
+## Disclaimer
+This is a **personal research** repository. I'm **not an expert** on this platform and I rely heavily on **AI-assisted analysis**. Findings may be **wrong or incomplete**. Use at your own risk; corrections and PRs are welcome.
+
+SoC note: the main chip on my unit is marked **M5 (DWIN)**. I reference **T5L** family documentation where it matches observed behaviour, but any M5↔T5L equivalence is **unconfirmed**.
