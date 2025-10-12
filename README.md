@@ -1,5 +1,9 @@
 # ZK‑INKJET Firmware Reverse Engineering
 
+## License
+- Code: MIT (see `LICENSE`)
+- Images/Docs: CC BY 4.0 (see `docs/IMAGE_LICENSE.md`)
+
 This repository contains resources and tooling for analyzing the firmware of the **ZK‑INKJET** (CHIKY/ZK1696‑class) handheld inkjet printer. The goal is to document proprietary file formats, decode UI graphics, and provide a foundation for scripted/remote printing experiments (e.g., via UART).
 
 > **Project language:** English
