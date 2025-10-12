@@ -1,6 +1,6 @@
-# Image & documentation license
+# Image/Docs License
 
-- Photos, diagrams, and screenshots in this repo: **CC BY 4.0**.
-- Please attribute: “BadlyDrawnBoy / zk-inkjet-printer (GitHub)”.
+Unless noted otherwise, images and documentation in this repo are licensed under
+**Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-Note: Vendor PDFs and SDKs are **not** redistributed here; see docs/vendor_resources.md for links.
+You may share and adapt with attribution.
