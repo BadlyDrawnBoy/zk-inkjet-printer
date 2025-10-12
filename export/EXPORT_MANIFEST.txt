@@ -1,61 +1,112 @@
-# Export-Manifest zk-inkjet-export-20251012-021435
-# Optionen: WITH_BINARIES=0 WITH_GHIDRA=0
-# Erzeugt:  2025-10-12T02:14:35+02:00
+Export:        export/zk-inkjet-export-20251012-122951.tgz
+UTC:           20251012-122951
+Dateien:       101
+Größe (Bytes): 1146813458
+SHA256:        c3420055df974217888f8b0bfa5226e9c7944a8abf1df66f1d2d589f86e920b2
 
-## Dateien:
-      3490  ee01952407f9f939da6cda81c07aad2f55c8236849ad70deb4480ad815adef59  AGENTS.md
-    209509  011adcc2897f948edfa8f26c1a23d880e0e4d33bcf8cb0f055b9d34249a06df5  data/processed/UI_QVGA_480x480.png
-   3934892  4c374f83b69d0bfad1f5f4b2a419632d5fab36b20dba2e0a225e63596dad77d7  data/processed/ZK-INKJET-GUI-RES.zkml
-       513  1401565e33dc5cccb25ade40a461dde84b71038fe63a96c47a772e6588395dfb  data/raw/CHECKSUMS.txt
-   2576940  3be9028b01c0007aab9192877341918a0bc155beef55ac17e7e8f3bcc95151ea  data/raw/ZK-INKJET-NANO-APP.bin
-     12736  a651630c374c5441190cc35887baa814b4820c8ba2be100c9614f622cca6264d  data/raw/ZK-INKJET-NANO-BOOT.bin
-   1994504  327593d8ae42634ef11ac09072b070c6a179aad04f5b4e0f96f5813281ad00f3  data/raw/ZK-INKJET-RES-HW.zkml
-    460800  81de4c19350c574c18c07b68fb33cfb65249111aa63767d58addd3a76db64b2a  data/raw/ZK-INKJET-UI-QVGA.bin
-     38119  df3f2656d13dd239cec0ef5981a9c23cf83dcb26ed2da91cd97222f168a8b3a8  docs/analysis_traceability.md
-      5908  31278536a1f2605341cb1d9477c41021ce17d712b8390939c79fef04c9254a0c  docs/app_message_handlers.md
-      7396  38c83a65c57e3f86bbe5179f6c23cf9ff313fefb18b213f52b98996dc0c07bd1  docs/archive/documentation-20251009.md
-      5724  ada9e35e3d52374bc73a6b886623ab8a1edd3182578ecddcadd2d406d11607d5  docs/boot_analysis_methodology.md
-       460  5542df181c526f5b0122837d72c162d84d3f33909fd5fc55da39ae429a1aecba  docs/CONVENTIONS.md
-     15870  1a9e014c5ceaeb3aea24a99bb5004f29be27700aadbe6ea17330896763efb5c2  docs/documentation.md
-      4619  8293cbdf3697d44ff31fa4a5d1933dfbc35a838298ed1ebafe01b518da82cb54  docs/firmware_mod_plan.md
-      1235  177a2374a8e3be75881dec4ea4a2389b860a46c47014aeba560ffc6424275c6b  docs/NEXT_SESSION_BRIEF.md
-     15054  d7ef6f05ea43978ac1b9f8903afdeb31dd620e03722c9cc58568d0182557d74f  docs/offset_catalog.md
-      4310  c5872610a620385d9303f68fb630755ce2f5d3beeb5a1ea7aa7207dd9ad250e1  docs/SESSION_HANDOFF.md
-     26168  a2dcdf49c354e2ab4b41cf3d1b49769f3f0f78aa52018aced2d2fda383a98e64  docs/session_status.md
-      3210  ed2d69ae165e195e9959e6f784e75044c123e23913b7305f495212df6e2969f0  docs/storage_probe_notes.md
-      6537  4523ff1ac211d2c32feb9e93e96a3db9bdd8a00a409b7ef2a67a42b111a90d39  docs/update_file_rules.md
-MISSING      -  "DWIN/EKT043/Development\302\240Guide\302\240of\302\240T5L\302\240ASIC_20200624\302\240.pdf"
-       258  a3176ee8c02ba36b10375c6fae8003d4639636a0cca79bcefdcb300e63da7862  .gitattributes
-       485  0c62ad107263528e6ad76177cfd229d33bcd51ddb2787b79d8ec94b5b3d96c62  .gitignore
-      3430  e934f6836cd4b2173df7e647285c189a72d9086720246770ed58dde591cf8b19  PROJECT_STATUS.md
-      2604  25fc483c4780432120060f4bb5531c4183a14fc6943d4374b0087f71b99ca136  README.md
-        23  f0212043abff5c825fcd082668cbca5a9129b6f5a47b41b48441fba825e334ac  requirements-dev.txt
-      5150  5a59ca3871eb5c975a8106e3b8f058bacc1a97406dd3fec3a0d0d0608ff4cb94  scripts/app_message_table.py
-      2080  e65bc422b7b9dc7198a04e838d1f6c02574c0625b0f97fcb2c923ec59bce932a  scripts/carve_signatures.py
-      3008  fd0c2d69f530120431525ba917ac2f2736fb9cb50a6c30fbe942dd0a29581abb  scripts/detile_ui_qvga.py
-      1353  392c592616c124a36358f4c04f4c8ba0105d3b63e3b9dc2245f1a8d5d88155d2  scripts/doc_addr_lint.py
-       632  80332eb20cd0c525dacc5e507fe9b92b2cf0e6d847b9eade663bd6d833fa416a  scripts/fix_jpeg.py
-      1151  01a376ed42d634a992bb97409ecbf5785b469085a4d5a72c5bd4ef4c1539f63b  scripts/fix_sfnt.py
-      1031  89f2895e8031621287a750ab1aaecf8b51c7baa9ef485c6481dd327be78375e0  scripts/gh.sh
-      1855  0f90e04bddc552d2d6348833ba074780b496ce7c7aea7385f41f967902dbcabe  scripts/re_extract.sh
-       470  900561043ccd9797051b562203e8bc64f1a41a0b22baea166f2d2e8ce4ba8150  scripts/render_ui_qvga.py
-      6947  ac07baac9881b6078dbefe450ed561d96590812f49005432f1de967275214f1d  scripts/reshw_parse.py
-      7166  37d32ec9770abb10b2938a28f098d21a14107fd35f61e0273cdd4fc9c08a03ad  scripts/reshw_probe.py
-      5577  6a14896e7dd95114c04401b72ddba8cfa8dbe88ab9373b682675bac8dba8dae1  scripts/scan_strings.py
-      2209  30fa6b689e167aa56d2fc0abb5ad00e7509bb5fc49fdb29c60d08cabedf031bf  scripts/uiqvga_autotune.py
-      2740  e43950e6dc771d91d42f95e79f5850c348ce5b48436ddd2d121693696ae74374  scripts/uiqvga_decode_sweep.py
-      7092  403f612d51e4f20574b45f963486ca12cd170739b69dedcc5ef5172f66fdf3c7  scripts/uiqvga_hypersearch.py
-      4215  64d3f22d76472807b1308a2e0e3ecebac4a7c0d135de35819bc98e52d03bd392  scripts/uiqvga_smart_decode.py
-     10317  5571890eb74a32248f4cbfd9c15fbc666c81f3690af42160b2ddf8ba2b618621  scripts/upgrade_orchestrator_callers.py
-      7925  a54f365fea604016354a0fd2f34a49cfc3ad66a21375f21ed3dadc8fbb7244e6  scripts/upgrade_orchestrator_callgraph.py
-       264  32e79a690ab3770a5870c00321a4ad29333c06f57807c58be5dbc68cfadedc59  tests/conftest.py
-      2450  eff5aae77c43c1840074e9c1562d4f446a7b244651d016d06b33215485d6b308  tests/test_app_message_table.py
-      1758  4afb57875ce1f3a02e21a985dd2f9dab8d186e2598be7bea9c7bbe11cbf7ea61  tests/test_reshw_parse.py
-       577  472a36c3aad8de441a5f642a29e752037f0940d604a11bb81da9b1598ea31dd3  tests/test_reshw_probe.py
-      1061  7ebbfed7d52530161b6c8f5e56e5c7e4f6c1a8a2b05f68ee72de7b3f34327b6a  tests/test_scan_strings.py
-      2640  01d2f1529c1aa6b78767d798061740c001bc9d8aba4a09506cdeede764000d73  tests/test_uiqvga_decoder.py
-      1108  763121d735af07b427536bb2ba5dc1a6b4557ccc8f3daefc5e4b44f62b7ae44f  tests/test_uiqvga_hypersearch.py
-      1776  686b62478936a5871bb0aea0b8ba79c50105e654fd493b28823e422fdc601b3c  tests/test_update_literals.py
-      1839  6d5703911eb6967908efb7f2d8a0bbbdde5534e85f97c6ed7a95ee1004a5f0f3  tests/UPGRADE_POC.md
-      3796  ea679b4b95be1077f9e1a1f8f0832835c61f88dfd4e354793b83a037091f9913  tools/make_export.sh
-       222  f40d75a45bc9d49646888f5b1e4b20b5661706410e816d10e2cbf7ca15bbd704  tools/VERSIONS.md
+Schalter:
+  WITH_BIN=true
+  INCLUDE_DWIN=false
+
+Enthaltene Dateien:
+AGENTS.md
+data/processed/app_message_table.json
+data/processed/app_strings_report.md
+data/processed/boot_static_notes.md
+data/processed/gui_res_font_report.md
+data/processed/io_callgraph.json
+data/processed/reshw_index.json
+data/processed/reshw_probe_report.md
+data/processed/samples/reshw_01_0x10A000.bin
+data/processed/samples/reshw_02_0x0EB000.bin
+data/processed/samples/reshw_03_0x0D7000.bin
+data/processed/samples/reshw_04_0x0B5000.bin
+data/processed/samples/reshw_05_0x0A3000.bin
+data/processed/samples/reshw_06_0x164000.bin
+data/processed/UI_QVGA_480x480.png
+data/processed/UI_QVGA_best.png
+data/processed/uiqvga_params.json
+data/processed/upgrade_orchestrator_callers.json
+data/processed/upgrade_orchestrator_callers.txt
+data/processed/upgrade_orchestrator_calls.json
+data/processed/upgrade_orchestrator_disasm.txt
+data/processed/upgrade_wrapper_callers.json
+data/processed/upgrade_wrapper_callers.txt
+data/processed/ZK-INKJET-GUI-RES.zkml
+data/raw/CHECKSUMS.txt
+data/raw/fat16.img
+data/raw/sdcard.work.img
+data/raw/ZK-INKJET-NANO-APP.bin
+data/raw/ZK-INKJET-NANO-BOOT.bin
+data/raw/ZK-INKJET-RES-HW.zkml
+data/raw/ZK-INKJET-UI-QVGA.bin
+docs/analysis_traceability.md
+docs/app_message_handlers.md
+docs/archive/documentation-20251009.md
+docs/boot_analysis_methodology.md
+docs/CONVENTIONS.md
+docs/documentation.md
+docs/firmware_mod_plan.md
+docs/NEXT_SESSION_BRIEF.md
+docs/offset_catalog.md
+docs/SESSION_HANDOFF.md
+docs/session_status.md
+docs/storage_probe_notes.md
+docs/update_file_rules.md
+.ghidra_tmp/project/zk_inkjet_headless.gpr
+.ghidra_tmp/project/zk_inkjet_headless.rep/idata/~index.bak
+.ghidra_tmp/project/zk_inkjet_headless.rep/idata/~index.dat
+.ghidra_tmp/project/zk_inkjet_headless.rep/project.prp
+.ghidra_tmp/project/zk_inkjet_headless.rep/user/~index.dat
+.ghidra_tmp/project/zk_inkjet_headless.rep/versioned/~index.bak
+.ghidra_tmp/project/zk_inkjet_headless.rep/versioned/~index.dat
+.gitattributes
+.gitignore
+Makefile
+PROJECT_STATUS.md
+pytest.ini
+README.md
+requirements-dev.txt
+scripts/app_message_table.py
+scripts/carve_signatures.py
+scripts/detile_ui_qvga.py
+scripts/doc_addr_lint.py
+scripts/doc_addr_verify.py
+scripts/fix_jpeg.py
+scripts/fix_sfnt.py
+scripts/gh.sh
+scripts/__init__.py
+scripts/re_extract.sh
+scripts/render_ui_qvga.py
+scripts/reshw_parse.py
+scripts/reshw_probe.py
+scripts/scan_strings.py
+scripts/uiqvga_autotune.py
+scripts/uiqvga_decode_sweep.py
+scripts/uiqvga_hypersearch.py
+scripts/uiqvga_smart_decode.py
+scripts/upgrade_orchestrator_callers.py
+scripts/upgrade_orchestrator_callgraph.py
+tests/conftest.py
+tests/test_app_message_table.py
+tests/test_reshw_parse.py
+tests/test_reshw_probe.py
+tests/test_scan_strings.py
+tests/test_uiqvga_decoder.py
+tests/test_uiqvga_hypersearch.py
+tests/test_update_literals.py
+tests/UPGRADE_POC.md
+tools/make_export.sh
+tools/VERSIONS.md
+uiqvga_best/01_59.16_col_const_aaaa_swap0_bgr0_shift2.png
+uiqvga_best/02_59.16_col_const_aaaa_swap0_bgr1_shift2.png
+uiqvga_best/03_59.42_col_const_aaaa_swap0_bgr0_shift1.png
+uiqvga_best/04_59.42_col_const_aaaa_swap0_bgr1_shift1.png
+uiqvga_best/05_63.60_col_const_aaaa_swap0_bgr0_shift-1.png
+uiqvga_best/06_63.60_col_const_aaaa_swap0_bgr1_shift-1.png
+uiqvga_best/07_64.91_serp_const_aaaa_swap0_bgr0_shift2.png
+uiqvga_best/08_64.91_serp_const_aaaa_swap0_bgr1_shift2.png
+uiqvga_best/09_64.96_col_const_aaaa_swap0_bgr0_shift-2.png
+uiqvga_best/10_64.96_col_const_aaaa_swap0_bgr1_shift-2.png
+uiqvga_best/11_65.17_serp_const_aaaa_swap0_bgr0_shift1.png
+uiqvga_best/12_65.17_serp_const_aaaa_swap0_bgr1_shift1.png
