@@ -27,6 +27,7 @@ Additional scripts such as `uiqvga_hypersearch.py` allow brute-force tuning of t
 ## Tests & Export
 Activate your virtualenv (e.g., `source .venv/bin/activate`), then run `make test`, `make lint-docaddrs`, and `make export`.
 These helpers wrap `pytest -q`, doc address linting, and the export bundle (`export/zk-inkjet-export-<UTCSTAMP>.tgz`) with caches filtered out.
+Set `GHIDRA_HOME` and run `make gh` to refresh `data/processed/io_callgraph.json`; when Ghidra is absent the target skips quietly.
 
 ## Coding agents
 
