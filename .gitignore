@@ -36,3 +36,6 @@ ZK-INKJET-UI-QVGA.bin
 
 # uiqvga artefacts
 uiqvga_best/
+
+# export artifacts
+export/*.tgz
