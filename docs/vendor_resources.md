@@ -38,19 +38,14 @@ sha256sum <file.pdf> >> docs/vendor_checksums.txt
 
 Trademarks belong to their respective owners. This is a personal research project (interoperability). Do not upload vendor packages here; link to official sources instead.
 
-### Direct links (official)
-- **DWIN Tool page (DGUS, drivers, etc.)** — DGUS downloads and related tools.  
-  dwin-global.com/tool-page/  <!-- official tool hub -->
-- **Development guides index** — assorted DWIN development guides (T5/T5L).  
-  dwin-global.com/development-guide/
-- **DGUSII serial protocol (T5/T5L)** — forum topic with attachment (0x82/0x83 commands).  
-  forums.dwin-global.com/index.php/forums/topic/application-instructions%EF%BC%9At5t5l-dgusii-serial-communication-protocol/
-- **Example dev board (EKT043B)** — product page (often links a resource pack).  
-  www.dwin.com.cn/product_detail_4948245.html
-
 ## Direct links (official)
-- DWIN Global – Kernel upgrade: https://de.dwin-global.com/kernel-upgrade/
-- DWIN Global – Development guide index: https://de.dwin-global.com/development-guide/
+- [DWIN Tool page (DGUS, drivers, etc.)](https://dwin-global.com/tool-page/) — DGUS downloads and related tools. <!-- official tool hub -->
+- DWIN development guides:
+  - [Primary index](https://dwin-global.com/development-guide/) — assorted T5/T5L documentation.
+  - [German mirror](https://de.dwin-global.com/development-guide/) — same content, alternate locale.
+- [DGUSII serial protocol (T5/T5L)](https://forums.dwin-global.com/index.php/forums/topic/application-instructions%EF%BC%9At5t5l-dgusii-serial-communication-protocol/) — forum topic with attachment covering 0x82/0x83 commands.
+- [Example dev board (EKT043B)](https://www.dwin.com.cn/product_detail_4948245.html) — product page that often links a resource pack.
+- [Kernel upgrade kits](https://de.dwin-global.com/kernel-upgrade/) — official upgrade packages for DGUS platforms.
 
 ### Kernel upgrade kits: interesting files to inspect (names seen in vendor kit)
 - `STARTUP_M5.A51` / `STARTUP_M5.zip` — 8051 startup code labeled **M5** (helpful for reset/interrupt model).
