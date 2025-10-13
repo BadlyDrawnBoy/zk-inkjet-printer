@@ -30,11 +30,9 @@ _Last updated: 2025-10-11_
 | P2-1 | Protocol hypotheses | ⏳ Pending | To use outputs from APP strings + future disassembly; stub not yet created. |
 
 ## Next Focus Areas
-1. Identify the routine that writes a non-null pointer into `queue_ctrl+0x10` and document it alongside the existing prefill entry (`docs/SESSION_HANDOFF.md`, `docs/offset_catalog.md`).
-2. Characterise validator `0x002BFDDC` (behaviour, failure path, side-effects) before the flash writer `0x002BFC34` runs; update canonical docs with the findings.
-3. Continue RES-HW structure work (TOC headers, entry descriptors) using `data/processed/samples/`, once queue/flash gating tasks land.
-
-See `docs/NEXT_SESSION_BRIEF.md` for the detailed kickoff checklist covering items 1 and 2.
+The live roadmap, definitions of done, and environment tips are now consolidated in
+[`docs/status_dashboard.md`](docs/status_dashboard.md). Update that dashboard as progress lands and archive
+superseded session dumps under `docs/archive/`.
 
 ## Notes & Open Questions
 - `.zkml` appears to be a generic vendor extension for resource blobs (font TTF included); classification documented in session notes.
