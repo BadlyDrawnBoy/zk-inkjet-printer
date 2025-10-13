@@ -1,6 +1,6 @@
 # Vendor resources (links only)
 
-I do **not** redistribute vendor SDKs/manuals in this repository. This page lists official sources/search terms so others can fetch the same files themselves and record versions/checksums.
+I do **not** redistribute vendor SDKs/manuals in this repository. This page lists official sources/search terms so others can fetch the same files themselves and record versions/checksums. For UART-specific takeaways distilled from these references, see `docs/uart_control_consolidated.md`.
 
 ## SoC note
 The main SoC on my unit is marked **M5 (DWIN)**. I could not find an M5 datasheet; I reference **T5L** family documentation where it matches observed behaviour. Any M5↔T5L equivalence is **unconfirmed**.

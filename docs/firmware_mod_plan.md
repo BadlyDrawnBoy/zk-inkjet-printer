@@ -35,7 +35,7 @@ This roadmap tracks the critical paths toward gaining control over the ZK-INKJET
     - [ ] Combine with `reshw_probe_report` findings to map GUI resource loading.
 
 - **UART/Protocol Discovery**
-  - Evidence: pending correlation of strings with code.
+  - Evidence: pending correlation of strings with code. Consolidated UART guidance now lives in `docs/uart_control_consolidated.md`; keep this roadmap focused on scheduling and cross-cutting milestones.
   - Tasks (tied to agent_tasks.yaml):
     - [ ] Implement `scripts/proto_skeleton.py` once string offsets and handler functions are known (Task P2-1).
     - [ ] Document serial hypotheses in `docs/protocol_hypotheses.md` with concrete baud-rate evidence.
