@@ -1,0 +1,128 @@
+{
+  "agentProfiles": [
+    {
+      "id": "ghidra-jt-slot-processor",
+      "name": "Ghidra: JT-Slot Processor",
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "maxIterations": 5,
+      "maxTokens": 2000,
+      "minTimeBetweenToolCalls": 0,
+      "temperature": 0.1,
+      "toolApprovals": {
+        "ghidra-bridge---read_dword": "always",
+        "ghidra-bridge---disassemble_function": "always",
+        "ghidra-bridge---rename_function_by_address": "always",
+        "ghidra-bridge---set_decompiler_comment": "always",
+        "ghidra-bridge---get_function_by_address": "always"
+      },
+      "includeContextFiles": false,
+      "includeRepoMap": false,
+      "usePowerTools": false,
+      "useAiderTools": false,
+      "useTodoTools": false,
+      "useSubagents": false,
+      "customInstructions": "You are a specialized Ghidra analysis agent processing Jump-Table slots in ARM firmware.\n\nTask: Analyze Jump-Table slot {{slot_index}} in app.bin (Nuvoton N3290X, ARMv5T).\n\nSteps:\n1. Calculate slot address: jt_base + (slot_index * 4)\n2. read_dword(slot_addr) → get raw 32-bit value\n3. Check if value is valid pointer (not instruction, in range 0x00200000-0x00475000)\n4. If valid:\n   a. Test ARM mode: disassemble_function(value)\n   b. Test Thumb mode: disassemble_function(value-1)\n   c. If function found:\n      - rename_function_by_address(addr, \"dispatch_handler_{slot_index:02d}_tbd\")\n      - set_decompiler_comment(addr, \"JT slot {slot_index} handler\")\n      - Verify via get_function_by_address\n5. Return JSON result\n\nUse only ghidra-bridge MCP tools. Follow Write→Verify pattern.",
+      "enabledServers": ["ghidra-bridge"],
+      "autoApprove": false,
+      "subagent": {
+        "enabled": true,
+        "systemPrompt": "You are a specialized JT-slot processor for ARM firmware reverse engineering. Process one slot at a time, verify all changes, return JSON results.",
+        "invocationMode": "on-demand",
+        "color": "#FF6B6B",
+        "description": "Process Jump-Table slots in parallel (ARMv5T, Thumb-bit aware)",
+        "contextMemory": "off"
+      }
+    },
+    {
+      "id": "ghidra-mmio-annotator",
+      "name": "Ghidra: MMIO Annotator",
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "maxIterations": 5,
+      "maxTokens": 2000,
+      "minTimeBetweenToolCalls": 0,
+      "temperature": 0.1,
+      "toolApprovals": {
+        "ghidra-bridge---disassemble_function": "always",
+        "ghidra-bridge---set_disassembly_comment": "always"
+      },
+      "includeContextFiles": false,
+      "includeRepoMap": false,
+      "usePowerTools": false,
+      "useAiderTools": false,
+      "useTodoTools": false,
+      "useSubagents": false,
+      "customInstructions": "You are a specialized Ghidra analysis agent annotating MMIO register accesses in ARM firmware.\n\nTask: Annotate MMIO register accesses in function at {{function_addr}} in app.bin.\n\nSteps:\n1. disassemble_function({{function_addr}})\n2. For each LDR/STR instruction accessing MMIO addresses:\n   - Identify operation (READ/WRITE, |=, &=, toggle)\n   - set_disassembly_comment(instr_addr, \"// {reg_name}: {operation} ({description})\")\n3. Verify via disassemble_function\n4. Return JSON result\n\nUse only ghidra-bridge MCP tools. Follow Write→Verify pattern.",
+      "enabledServers": ["ghidra-bridge"],
+      "autoApprove": false,
+      "subagent": {
+        "enabled": true,
+        "systemPrompt": "You are a specialized MMIO annotator for ARM firmware. Add concise EOL comments for register accesses, verify all changes, return JSON results.",
+        "invocationMode": "on-demand",
+        "color": "#4ECDC4",
+        "description": "Annotate MMIO register accesses with EOL comments",
+        "contextMemory": "off"
+      }
+    },
+    {
+      "id": "ghidra-string-xref-hunter",
+      "name": "Ghidra: String Xref Hunter",
+      "provider": "openai",
+      "model": "gpt-4o",
+      "maxIterations": 10,
+      "maxTokens": 4000,
+      "minTimeBetweenToolCalls": 0,
+      "temperature": 0.1,
+      "toolApprovals": {
+        "ghidra-bridge---get_xrefs_to": "always",
+        "ghidra-bridge---decompile_function_by_address": "always"
+      },
+      "includeContextFiles": false,
+      "includeRepoMap": false,
+      "usePowerTools": false,
+      "useAiderTools": false,
+      "useTodoTools": false,
+      "useSubagents": false,
+      "customInstructions": "You are a specialized Ghidra analysis agent finding and analyzing string cross-references.\n\nTask: Find all callers of string at {{string_addr}} and analyze context.\n\nSteps:\n1. get_xrefs_to(string_addr) → get caller list\n2. For each caller:\n   a. decompile_function_by_address(caller_addr)\n   b. Extract context: arguments, return value, nearby calls\n   c. Suggest descriptive function name based on context\n3. Return JSON result\n\nUse only ghidra-bridge MCP tools.",
+      "enabledServers": ["ghidra-bridge"],
+      "autoApprove": false,
+      "subagent": {
+        "enabled": true,
+        "systemPrompt": "You are a specialized string xref hunter for firmware analysis. Find callers, analyze context, suggest meaningful names based on evidence.",
+        "invocationMode": "on-demand",
+        "color": "#95E1D3",
+        "description": "Find string callers and suggest function names",
+        "contextMemory": "off"
+      }
+    },
+    {
+      "id": "ghidra-batch-loop-agent",
+      "name": "Ghidra: Batch Loop Agent",
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "maxIterations": 25,
+      "maxTokens": 4000,
+      "minTimeBetweenToolCalls": 0,
+      "temperature": 0.1,
+      "toolApprovals": {},
+      "includeContextFiles": false,
+      "includeRepoMap": false,
+      "usePowerTools": false,
+      "useAiderTools": false,
+      "useTodoTools": false,
+      "useSubagents": true,
+      "customInstructions": "You are a batch task executor for Ghidra reverse engineering.\n\nYour job: Execute N subagent tasks, aggregate results to compact JSON, return summary only.\n\nCRITICAL RULES:\n1. For each task in the batch:\n   - Call the appropriate subagent (e.g., ghidra-jt-slot-processor)\n   - Extract ONLY the result JSON (discard conversation)\n   - Append to results[]\n2. After all tasks complete:\n   - Aggregate results to summary\n   - Return ONLY: {summary, valid_items, invalid_items}\n   - DO NOT include full subagent transcripts\n3. Token budget: Keep output <2000 tokens\n\nExample output:\n{\n  \"batch_type\": \"jt-scan\",\n  \"summary\": {\n    \"total\": 20,\n    \"valid\": 3,\n    \"invalid\": 17,\n    \"renamed\": 3\n  },\n  \"valid_items\": [\n    {\"slot\": 5, \"target\": \"0x00268ABC\", \"mode\": \"Thumb\"},\n    {\"slot\": 12, \"target\": \"0x0026FC20\", \"mode\": \"ARM\"}\n  ],\n  \"invalid_items\": [\n    {\"slot\": 0, \"reason\": \"ARM instruction BX ip\"},\n    {\"slot\": 1, \"reason\": \"Outside code range\"}\n  ]\n}",
+      "enabledServers": [],
+      "autoApprove": false,
+      "subagent": {
+        "enabled": true,
+        "systemPrompt": "You are a batch executor. Call N subagents, aggregate results to compact JSON (<2000 tokens), return summary only. No transcripts.",
+        "invocationMode": "on-demand",
+        "color": "#FFD93D",
+        "description": "Execute batch tasks via subagents, return compact summary",
+        "contextMemory": "off"
+      }
+    }
+  ]
+}

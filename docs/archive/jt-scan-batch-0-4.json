@@ -1,0 +1,60 @@
+{
+  "batch": "0-4",
+  "timestamp": "2025-01-25T18:30:00Z",
+  "jt_base_candidate": "0x002000A0",
+  "results": [
+    {
+      "slot": 0,
+      "address": "0x002000A0",
+      "raw_value": "0xe12fff1c",
+      "is_valid_pointer": false,
+      "reason": "ARM instruction (BX ip)",
+      "verified": true,
+      "verification_method": "manual read_dword + disassemble"
+    },
+    {
+      "slot": 1,
+      "address": "0x002000A4",
+      "raw_value": "0x7803188a",
+      "is_valid_pointer": false,
+      "reason": "Outside executable segments",
+      "verified": true,
+      "verification_method": "manual read_dword + disassemble"
+    },
+    {
+      "slot": 2,
+      "address": "0x002000A8",
+      "raw_value": "0x075c3001",
+      "is_valid_pointer": false,
+      "reason": "Thumb bit set, but target invalid",
+      "verified": false,
+      "verification_method": "subagent only"
+    },
+    {
+      "slot": 3,
+      "address": "0x002000AC",
+      "raw_value": "0xd1010f64",
+      "is_valid_pointer": false,
+      "reason": "Outside load range, not aligned",
+      "verified": false,
+      "verification_method": "subagent only"
+    },
+    {
+      "slot": 4,
+      "address": "0x002000B0",
+      "raw_value": "0x30017804",
+      "is_valid_pointer": false,
+      "reason": "Outside code segments",
+      "verified": false,
+      "verification_method": "subagent only"
+    }
+  ],
+  "summary": {
+    "total_slots": 5,
+    "valid_pointers": 0,
+    "invalid_pointers": 5,
+    "verified_count": 2,
+    "confidence": "HIGH (2/5 manually verified, all consistent)"
+  },
+  "conclusion": "JT_BASE candidate 0x002000A0 is invalid. All 5 slots contain non-pointer values. Recommend scanning literal pool 0x00200090-0x002000B0 for actual JT_BASE."
+}

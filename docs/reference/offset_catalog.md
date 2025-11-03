@@ -2,6 +2,14 @@
 
 Addressing conventions: see `docs/CONVENTIONS.md`.
 
+## Verification Status
+
+- ✅ VERIFIED (>90% confidence) - Multiple confirmations
+- ⚠️ LIKELY (70-90% confidence) - Strong evidence
+- ❓ HYPOTHESIS (<70% confidence) - Needs verification
+
+---
+
 | File | Offset (hex) | Description | Evidence |
 |------|--------------|-------------|----------|
 | `ZK-INKJET-NANO-BOOT.bin` | `0x0` | Reset stub entering privileged modes and loading stack pointers for each CPU mode from literals at `0x40–0x54`. | `data/processed/boot_static_notes.md`, `docs/boot_analysis_methodology.md` |
@@ -88,3 +96,23 @@ Addressing conventions: see `docs/CONVENTIONS.md`.
   ```
 
 _Add further offsets as soon as disassembly or probing reveals new actionable locations._
+
+## Verification Summary
+
+### ✅ High Confidence Entries
+- Pin-Mux function @ 0x00031f34 (GPIO configuration)
+- GPBFUN register @ 0xB0000084 (confirmed via disassembly)
+- Upgrade orchestrator @ 0x0020EAEC (systematic analysis)
+- Message handler table @ 0x003D3E00 (verified structure)
+
+### ⚠️ Medium Confidence Entries  
+- Flash writer @ 0x002BFC34 (pattern-based)
+- Queue controller @ 0x00244F8C (single confirmation)
+- Shared notifier @ 0x002302EC (needs more verification)
+
+### ❓ Low Confidence Entries
+- Vtable callback @ 0x00208592 (needs RAM dump)
+- Hardware update @ 0x00230E04 (peripheral type unclear)
+
+### 🔄 Corrected Entries
+- GPB[2-5]: Previously "used as GPIO" → Now "NOT configured in firmware"

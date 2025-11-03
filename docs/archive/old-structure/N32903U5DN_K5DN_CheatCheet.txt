@@ -1,0 +1,99 @@
+﻿Nuvoton N32903K5DN Mikrocontroller: Cheat Sheet für Firmware-RE
+
+CHIP-IDENTIFIKATION (VERIFIZIERT)
+    • Chip: Nuvoton N32903K5DN (K5DN = ohne externen SDRAM)
+    • Gehäuse: LQFP-128 (N32903U5DN Pinout)
+    • Beschriftung: "DWIN M5" (Custom Branding)
+    • Verifikation: USB-Strings ("Nuvoton", "W55FA93"), ARM926EJ-S Architektur, GPIO-Pinout
+    • Confidence: 98% (CHIPID-Register nicht ausgelesen, aber Pinout + Architektur bestätigt)
+
+Übersicht und CPU
+    • CPU: 32‑bit ARM926EJ‑S RISC, 8 KB I‑Cache und 8 KB D‑Cache, Takt bis 200 MHz bei 1,8 V【turn6file0†L5-L13】.
+    • On‑Chip‑Speicher: 8 KB internes SRAM und 16 KB Internal Boot ROM (IBR)【turn6file0†L168-L176】.
+    • JTAG‑Schnittstelle für Debugging.
+    • IBR‑Boot: unterstützt mehrere Bootquellen (SD‑Karte, NAND‑Flash, SPI‑Flash, USB); über die UART‑Konsole können Boot‑Meldungen ausgegeben werden【turn6file2†L80-L91】.
+Boot‑ und Power‑On‑Konfiguration
+    • Die Power‑On‑Konfiguration wird über Pull‑Ups/Pull‑Downs an LVDATA/ ND‑Pins geladen und im CHIPCFG‑Register gespeichert.
+    • LVDATA[6] wählt den NAND‑Flash‑Typ (Error‑Free vs. Raw NAND)【turn5file11†L11-L16】.
+    • LVDATA[5:4] legt die NAND‑Page‑Größe fest (2 KB, 4 KB, 8 KB oder „Ignorieren“)【turn5file11†L24-L41】.
+    • ND[7] bestimmt die Zahl der NAND‑Adresszyklen (4 oder 5)【turn5file11†L11-L16】.
+    • ND[5:4] wählt den SDRAM‑Typ (SDR/mDDR/DDR/DDR2)【turn5file11†L24-L41】.
+    • ND[3:0] definiert den Boot‑Modus und den Quarzoszillator: 0x1011 → Boot aus IBR‑Normalmodus bei 12 MHz, 0x1111 → Boot aus IBR‑Normalmodus bei 27 MHz【turn5file11†L101-L121】.
+    • Falls kein Boot‑Medium gefunden wird, schaltet der IBR in den USB‑Recover‑Mode und lädt die Firmware via USB【turn5file1†L85-L136】.
+Speicher‑ und Peripherie‑Karte (System Memory Map)
+Der Adressraum des N3290x beträgt 4 GB. Wichtige Bereiche:
+Bereich	Adresse	Beschreibung	Quelle
+SDRAM	0x0000_0000–0x7FFF_FFFF	Hauptspeicher; bis 512 MB; Shadow‑Mapping bei 0x8000_0000–0xAFFF_FFFF【turn6file0†L168-L176】	Nuvoton Design Guide
+GCR_BA	0xB000_0000	System‑ und Global‑Control‑Register (Chip‑ID, Reset, Pin‑Mux)【turn5file2†L112-L134】	Nuvoton Design Guide
+CLK_BA	0xB000_0200	Takt‑Controller【turn6file3†L71-L76】	Nuvoton Design Guide
+SDIC_BA	0xB000_3000	SDRAM‑Interface‑Controller【turn6file3†L77-L84】	Nuvoton Design Guide
+EDMA_BA	0xB000_8000	Enhanced DMA (5 Kanäle)【turn6file3†L77-L84】	Nuvoton Design Guide
+AHB2‑Region	0xB100_0000–0xB100_DFFF	SPU, I2S, LCD/VPOST, Capture, Frame‑Switch, SD‑Controller, USB Device, USB Host, JPEG, BitBLT【turn6file3†L85-L101】	Nuvoton Design Guide
+APB‑Region	0xB800_0000–0xB800_EFFF	Interrupt‑Controller, GPIO, Timer/WDT, RTC, I2C, Keypad, PWM, UART, SPI‑Master, ADC【turn5file12†L33-L51】【turn6file2†L80-L91】【turn5file7†L59-L75】	Nuvoton Design Guide
+SRAM_BA	0xFF00_0000–0xFF00_1FFF	On‑Chip‑SRAM (8 KB)【turn5file13†L1-L6】	Nuvoton Design Guide
+IBR_BA	0xFFFF_0000–0xFFFF_FFFF	Internal Boot ROM (16 KB)【turn5file13†L1-L6】	Nuvoton Design Guide
+Die APB‑Peripherie enthält unter anderem: - AIC_BA 0xB800_0000 – Interrupt‑Controller【turn5file12†L33-L35】. - GP_BA 0xB800_1000 – GPIO‑Port A–D【turn6file3†L85-L101】. - TMR_BA 0xB800_2000 – Timer und Watchdog【turn5file12†L33-L51】. - RTC_BA 0xB800_3000 – Real‑Time Clock【turn5file12†L33-L51】. - I2C_BA 0xB800_4000 – I²C‑Controller【turn5file12†L33-L51】. - KPI_BA 0xB800_5000 – Keypad Interface【turn5file12†L33-L51】. - PWM_BA 0xB800_7000 – PWM‑Controller【turn5file12†L33-L51】. - UA_BA 0xB800_8000 – UART‑Controller (UART0/1)【turn6file2†L80-L91】. - SPIMS0_BA 0xB800_C000 / SPIMS1_BA 0xB800_C400 – SPI‑Master‑Module【turn5file7†L59-L75】. - ADC_BA 0xB800_E000 – 10‑bit SAR‑ADC【turn5file12†L33-L51】.
+Clock‑ und System‑Controller (GCR/CLK)
+    • Das GCR enthält die Chip‑ID, Reset‑Register, Produkt‑ID und die Multi‑Funktions‑Pin‑Steuerung (GPAFUN, GPBFUN, GPCFUN, GPDFUN)【turn5file2†L112-L134】.
+    • Der CLK‑Controller steuert PLLs, Taktquellen und Clock‑Gating; er ermöglicht Idle‑ und Power‑Down‑Modi sowie das Aktivieren einzelner Peripherie‑Clocks【turn6file3†L71-L76】.
+Interrupt‑Controller (AIC)
+    • Bietet acht priorisierte Level, unterstützt FIQ/IRQ und wählbare Level‑ oder Edge‑Trigger【turn5file0†L29-L37】【turn5file3†L11-L15】.
+    • Wichtige IRQ‑Quellen【turn5file3†L57-L95】: WDT (Kanal 1), GPIO-Interrupts (Kanäle 2–5), BitBLT, Frame‑Switch, High‑Speed‑UART, Timer0/1, USB Device, SD‑Controller, USB Host, EDMA, I2S, Capture, SPI‑Master, ADC und viele weitere.
+    • AIC‑Register ermöglichen das Setzen von Prioritäten, Masken und Vektoradressen; beim RE helfen sie, Handler im Code zu lokalisieren.
+UART‑Schnittstellen
+    • Zwei UARTs (UART0 High‑Speed, UART1 Normal) mit Base 0xB800_8000【turn6file2†L80-L91】.
+    • Registeroffsets【turn6file5†L1-L8】【turn6file6†L101-L116】:
+    • RBR/THR (+0x00) – Datenpuffer (lesen/schreiben).
+    • IER (+0x04) – Interrupt‑Enable (Rx/Tx, Line‑Status, Modem).
+    • FCR (+0x08) – FIFO‑Steuerung (Reset/Trigger‑Level).
+    • LCR (+0x0C) – Datenformat (Wortlänge, Stoppbits, Parität, Break).
+    • MCR (+0x10) – Modem‑Control (Loopback, RTS/CTS).
+    • MSR (+0x14) – Modem‑Status.
+    • FSR (+0x18) – FIFO‑Status.
+    • ISR (+0x1C) – Interrupt‑Status.
+    • TOR (+0x20) – Time‑Out‑Register.
+    • BAUD (+0x24) – Baudrate‑Divider; Baud = UART‑Clock / (16 × (BRD+2))【turn6file6†L101-L116】.
+    • FIFO‑Größen: UART0 64 Byte; UART1 16 Byte【turn6file6†L101-L116】.
+SPI‑Master‑Module (SPIMS)
+    • Zwei SPI‑Controller: SPIMS0 (Base 0xB800_C000) und SPIMS1 (0xB800_C400)【turn5file7†L59-L75】.
+    • Wichtige Register【turn5file7†L59-L75】:
+    • CNTRL (+0x00): Start (GO_BUSY), Master/Slave, Tx_NEG/Rx_NEG, Bitlänge (Tx_BIT_LEN), Burst‑Länge (Tx_NUM), LSB/MSB, Clock‑Polarity (CLKP), Sleep, Interrupt‑Enable/Flag.
+    • DIVIDER (+0x04): SPI‑Clock‑Teiler; SPI‑Frequenz = System‑Clock / ((DIVIDER+1) × 2).
+    • SSR (+0x08): Slave‑Select (Bits 0/1 wählen CS0/CS1); Auto‑Deassert möglich.
+    • RX0..RX3 / TX0..TX3 (+0x10–0x1C): 4 × 32‑bit FIFO für Rx und Tx.
+    • JS (+0x20): Zusätzliche Einstellungen (Byte‑Sleep, Endian usw.).
+    • EDMA (+0x28): EDMA‑Trigger für SPI‑Transfers.
+    • Bei Firmware‑Analyse deuten Zugriffe auf CNTRL, DIVIDER und SSR auf SPI‑Initialisierung (z. B. Zugriff auf externen Flash oder Druckkopf).
+I²C‑Controller
+    • I2C_BA 0xB800_4000: Master‑I²C mit konfigurierbarem Bus‑Clock, Start/Stop‑Generierung und Interrupts.
+    • Wird oft für Sensoren oder Tintenstandsmessung genutzt; im Code erkennt man I²C‑Transfers an Writes in I2C_CON, I2C_DAT und Warteschleifen auf I2C_STAT.
+Timer / PWM / Watchdog
+    • TMR_BA 0xB800_2000: Vier 32‑Bit‑Timer, die als Free‑Running, Periodic, One‑Shot, Capture oder Watchdog genutzt werden können.
+    • PWM_BA 0xB800_7000: Vier PWM‑Kanäle mit Dead‑Zone‑Generator; wichtig für Motor‑/Aktuator‑Ansteuerung.
+    • Watchdog ist Teil des Timer‑Blocks; WDT‑Interrupt ist IRQ‑Kanal 1【turn5file3†L57-L95】.
+ADC (SAR‑ADC)
+    • ADC_BA 0xB800_E000: 10‑bit SAR‑ADC mit bis zu 500 kS/s, 8 Kanälen, Touchscreen‑Modus und Spannungsdetektor【turn5file9†L73-L81】.
+    • Für Drucker‑Firmware eher unwichtig, könnte aber Sensorwerte liefern.
+GPIO & Pin‑Mux
+    • GP_BA 0xB800_1000: Vier Ports (A–D) mit je 16 Pins.
+    • Jeder Pin kann als Input/Output/Open‑Drain konfiguriert werden; Interrupts auf Pin‑Ebene (GPIO_INT0..3) sind vorhanden【turn5file3†L57-L95】.
+    • Die Multi‑Funktions‑Pin‑Register GPAFUN, GPBFUN, GPCFUN, GPDFUN im GCR bestimmen, ob ein Pin als GPIO oder als Peripherie‑Funktion (UART, SPI, I2C, SD, PWM, etc.) arbeitet【turn6file1†L71-L79】【turn6file7†L1-L7】.
+    • Beispiel: GPA10 und GPA11 werden zu URTXD/URRXD gemultiplexed【turn6file1†L71-L79】; GPD3..GPD6 bilden die SPI0‑Pins (CLK, DO, DI, CS)【turn6file7†L29-L37】【turn6file7†L61-L70】.
+EDMA
+    • EDMA_BA 0xB000_8000 besitzt 5 DMA‑Kanäle (4 für Peripherie, 1 für Speicher–zu–Speicher)【turn6file3†L77-L84】.
+    • Unterstützt Byte/Half‑Word/Word‑Transfers, Burst‑Modus, Auto‑Reload und optional Farbformat‑Transformation (RGB565 ↔ YCbCr422)【turn6file0†L168-L176】.
+Weitere Module (kurz)
+    • SDIC/SIC: SD‑/eMMC‑Controller (PIO und DMA); im Boot‑ROM wird SD0 initialisiert.
+    • UDC/UHC: USB 2.0 Device/Host; für Firmware‑Updates oder Debugging nutzbar.
+    • JPEG‑Codec, Video Capture, VPOST, SPU: Für Medienanwendungen wichtig, für Drucker‑Firmware vermutlich irrelevant.
+Reverse‑Engineering‑Hinweise
+    1. Speichersegmente labeln: In Ghidra oder anderen Tools die wichtigen Adressbereiche (SDRAM, Shadow, AHB, APB, SRAM, IBR) als separate RAM/ROM‑Segmente anlegen.
+    2. Peripherie‑Basen beschriften: Strukturen für GCR, CLK, AIC, UART, SPI, Timer, GPIO, etc. anlegen, um MMIO‑Zugriffe im Code zu interpretieren.
+    3. Boot‑Code identifizieren: Suchen Sie nach Lesezugriffen auf CHIPCFG/ND im Bereich GCR_BA+0x04, um den gewählten Boot‑Modus zu erkennen.
+    4. IRQ‑Handler erkennen: Die AIC‑Initialisierung (Masken setzen und Kanäle aktivieren) listet die Reihenfolge der Handler; vergleichen Sie die Vektortabelle mit den Kanälen【turn5file3†L57-L95】.
+    5. Peripherie‑Initialisierung: Typischer Ablauf: Clock‑Enable → Pin‑Mux konfigurieren → Soft‑Reset → Register konfigurieren → Interrupts aktivieren. Diese Muster lassen sich im Binärcode nachverfolgen.
+    6. Drucker‑spezifische I/O: Kommunikation mit dem Druckkopf oder Motoren erfolgt meistens über SPI (große Bursts mit Tx_NUM) oder PWM‑Kanäle; suchen Sie nach entsprechenden Zugriffssequenzen.
+    7. Debug‑Konsole: Firmware gibt Boot‑Logs meist über UART0 aus (115200 Bd). Erkennbar an Zugriffen auf UA_BA+0x24 (Baud‑Divider) und Setzen von LCR/FCR/IER.
+
+Dieser Cheatsheet fasst die wichtigsten Informationen aus dem N3290x Design Guide zusammen. Er soll dir als Nachschlagewerk bei der Analyse von Firmware auf Basis der N32903U5DN/K5DN‑Mikrocontroller dienen und hilft, Speicherbereiche, Register und typische Initialisierungssequenzen schnell zu finden. Viel Erfolg beim Reverse‑Engineering!
+

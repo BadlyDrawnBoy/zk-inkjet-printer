@@ -1,0 +1,31 @@
+{
+  "test_date": "2025-01-25",
+  "test_type": "subagent_jt_scan",
+  "batch_type": "jt-scan",
+  "summary": {
+    "total": 2,
+    "valid": 0,
+    "invalid": 2,
+    "renamed": 0
+  },
+  "valid_items": [],
+  "invalid_items": [
+    {
+      "slot": 0,
+      "slot_addr": "0x002000A0",
+      "raw_value": "0xE12FFF1C",
+      "reason": "ARM instruction (BX R12), not a pointer"
+    },
+    {
+      "slot": 1,
+      "slot_addr": "0x002000A4",
+      "raw_value": "0x7803188a",
+      "reason": "Outside valid code range (0x00200000-0x00475000)"
+    }
+  ],
+  "notes": [
+    "Subagent ghidra-jt-slot-processor works correctly",
+    "Loop-Agent (ghidra-batch-loop-agent) cannot call nested subagents due to hardcoded useSubagents: false in subagents.ts line 60",
+    "Workaround: Sequential calls with manual aggregation"
+  ]
+}
