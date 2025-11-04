@@ -1,5 +1,10 @@
 # Status Dashboard – ZK-INKJET Firmware Recon
 
+> [⤴ Back to archive overview](../README.md)
+
+
+
+
 _Last updated: 2025-10-11_
 
 This dashboard consolidates the "what happened", "what's next", and "where to find it" notes that were previously split

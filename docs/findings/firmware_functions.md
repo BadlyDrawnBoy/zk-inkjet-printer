@@ -1,7 +1,14 @@
+---
+title: Firmware Functions
+status: partially_verified
+status_display: "✅ PARTIALLY VERIFIED"
+confidence: "60-99% (per function)"
+last_verified: 2025-11-03
+provenance: sessions/session-2025-11-03-soc-identification.md
+---
+
 # Firmware Functions
 
-**Status:** ✅ PARTIALLY VERIFIED  
-**Last Updated:** 2025-11-03
 
 ---
 
