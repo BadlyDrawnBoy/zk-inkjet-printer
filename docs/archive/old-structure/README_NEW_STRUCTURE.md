@@ -1,5 +1,9 @@
 # Documentation Structure (Updated 2025-11-03)
 
+> [⤴ Back to archive overview](../README.md)
+
+
+
 ## New Organization
 
 ### docs/findings/ - What was found

@@ -1,6 +1,9 @@
 # Documentation Restructure - Complete ✅
 
-**Date:** 2025-11-03  
+> **Status:** Documentation architecture is stable as of 2025-11-03. Use the new audience guides under [`docs/guide/`](guide/) for day-to-day navigation.
+> **Next improvements:** Track incremental documentation ideas inside the [research notebook guide](guide/research_notebook.md#suggested-enhancements) instead of reopening this report.
+
+**Date:** 2025-11-03
 **Status:** DONE
 
 ---

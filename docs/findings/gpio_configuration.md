@@ -1,8 +1,14 @@
+---
+title: GPIO Configuration
+status: verified
+status_display: "✅ VERIFIED"
+confidence: "98%"
+last_verified: 2025-11-03
+provenance: sessions/session-2025-11-03-soc-identification.md
+---
+
 # GPIO Configuration
 
-**Status:** ✅ VERIFIED  
-**Confidence:** 98%  
-**Last Updated:** 2025-11-03
 
 ---
 

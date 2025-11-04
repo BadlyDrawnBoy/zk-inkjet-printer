@@ -1,7 +1,14 @@
+---
+title: MMIO Register Map
+status: partially_verified
+status_display: "✅ PARTIALLY VERIFIED"
+confidence: "90-99% (per register)"
+last_verified: 2025-11-03
+provenance: sessions/session-2025-11-03-soc-identification.md
+---
+
 # MMIO Register Map
 
-**Status:** ✅ PARTIALLY VERIFIED  
-**Last Updated:** 2025-11-03
 
 ---
 

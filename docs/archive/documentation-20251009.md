@@ -1,5 +1,7 @@
 # ZK-INKJET Firmware Analysis – Status (as of 2025-10-09)
 
+> [⤴ Back to archive overview](README.md)
+
 ## Context and Goal
 
 This document captures the historic investigation work on the ZK-INKJET handheld printer. The primary goal was to understand how the firmware boots, how resources are packaged, and how UI graphics can be reconstructed. For the current roadmap and reproducible command sets, refer to the quick navigation below.

@@ -26,7 +26,7 @@ These printers typically sell for ~€50–60 under various brands (e.g., **Luqe
 
 * **data/processed/** – analysis outputs (e.g., reconstructed 480×480 UI image `UI_QVGA_480x480.png`, parsed resources, callgraph JSONs).
 
-* **docs/** – documentation & notes (analysis methods, offset catalogs, update rules, etc.).
+* **docs/** – documentation & notes (analysis methods, offset catalogs, update rules, etc.). See [Documentation](#documentation) for guide links.
 
 * **docs/hardware/zk-dp20/photos/** – **project photos**  
   - `processed/` (max 2560 px JPEGs)  
@@ -77,6 +77,17 @@ python3 scripts/uiqvga_hypersearch.py --input data/raw/ZK-INKJET-UI-QVGA.bin
 ```
 
 More helpers: `uiqvga_autotune.py`, `uiqvga_decode_sweep.py`, resource carvers, string scanners, callgraph generators.
+
+---
+
+## Documentation
+
+- **Audience guides:**
+  - [Orientation](docs/guide/orientation.md) – repository tour, metadata workflow, onboarding checklist.
+  - [Operations runbook](docs/guide/operations.md) – reproducible command cookbook and verification checklist.
+  - [Research notebook](docs/guide/research_notebook.md) – curated links to methodology, findings, and traceability.
+- **Living index:** [docs/README.md](docs/README.md) embeds the auto-generated verification snapshot.
+- **Status dashboard:** [docs/VERIFICATION_STATUS.md](docs/VERIFICATION_STATUS.md) mirrors the same summary with update instructions.
 
 ---
 

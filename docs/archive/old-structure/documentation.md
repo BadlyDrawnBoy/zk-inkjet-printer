@@ -1,5 +1,7 @@
 # ZK‑INKJET Firmware‑Analyse – Gesamtstand (Stand 09.10.2025)
 
+> [⤴ Zurück zur Archivübersicht](../README.md)
+
 ## Kontext und Ziel
 
 Im Rahmen der Untersuchung des handheld‑Tintenstrahldruckers „ZK‑INKJET“  wurden mehrere Roh‑Binärdateien (Boot‑Loader, Applikationscontainer,  UI‑Grafiken und Ressourcendateien) sowie ein ursprünglich  abgeschnittenes ext4‑Image analysiert. Ziel war es, den Aufbau der  Firmware zu verstehen, Ressourcen (Schriftarten, Bilder) zu extrahieren  und die proprietären Formate zu dokumentieren.
