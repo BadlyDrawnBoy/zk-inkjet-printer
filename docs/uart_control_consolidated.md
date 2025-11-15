@@ -1,6 +1,6 @@
 # UART Control Consolidated Notes
 
-This note consolidates the actionable conclusions that were previously split across `docs/HACKING_UART.md`, `docs/vendor_resources.md`, and `docs/firmware_mod_plan.md`. It keeps the UART-specific plan, supporting vendor context, and firmware integration steps in one place.
+This note consolidates the actionable conclusions that were previously split across `docs/HACKING_UART.md`, `docs/vendor_resources.md`, and the legacy `docs/archive/firmware_mod_plan_legacy.md`. It keeps the UART-specific plan, supporting vendor context, and firmware integration steps in one place.
 
 ## Hardware Context
 - **Platform**: The installed SoC is marked **M5 (DWIN)**. No primary datasheet is available, so the working assumption is functional similarity with the **T5L** family. Treat this as *unconfirmed* until proven on hardware.

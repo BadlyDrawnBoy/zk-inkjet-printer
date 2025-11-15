@@ -14,6 +14,7 @@
 - [`2025-10-10-session-notes.md`](2025-10-10-session-notes.md) — Interim log covering SD image triage.
 - [`aiderdesk-subagent-profiles.json`](aiderdesk-subagent-profiles.json) — Prompt presets used during early AI-assisted explorations.
 - [`jt-scan-batch-0-4.json`](jt-scan-batch-0-4.json), [`jt-scan-subagent-test-results.json`](jt-scan-subagent-test-results.json) — Raw extraction outputs preserved for reproducibility.
+- [`ghidra_headless_cli.md`](ghidra_headless_cli.md) & [`tools/ghidra_headless.sh`](tools/ghidra_headless.sh) — Retired CLI workflow for headless Ghidra exports.
 
 ### 3. Vendor Source Material
 

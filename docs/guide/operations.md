@@ -6,7 +6,7 @@
 
 - Python 3.10+, virtual environment recommended.
 - Install tooling: `pip install -r requirements-dev.txt`.
-- Optional: configure `GHIDRA_HOME` to enable callgraph generation via `make gh`.
+- Optional: attach a running Ghidra MCP/bridge session when you need interactive disassembly support.
 - Download the SD card release asset if you need raw binaries beyond what is tracked in `data/raw/`.
 
 ## Quick Commands
@@ -16,7 +16,6 @@
 | Run smoke tests | `make test` | Uses vendored pytest configuration. |
 | Decode UI graphics | `python3 scripts/uiqvga_smart_decode.py --input data/raw/ZK-INKJET-UI-QVGA.bin --output data/processed/UI_QVGA_480x480.png` | Produces 480×480 PNG. |
 | Explore decode parameters | `python3 scripts/uiqvga_autotune.py --input data/raw/ZK-INKJET-UI-QVGA.bin --log data/processed/autotune.csv` | Logs seam scores for later inspection. |
-| Regenerate callgraph (requires Ghidra) | `make gh` | Writes to `data/processed/io_callgraph.json`. |
 | Run verification summary script | `python tools/generate_verification_summary.py` | Updates documentation tables. |
 
 ## Verification Checklist

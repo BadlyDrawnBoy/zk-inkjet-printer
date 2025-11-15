@@ -44,9 +44,6 @@ These printers typically sell for ~€50–60 under various brands (e.g., **Luqe
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 make test   # quick smoke test
-# optional:
-# export GHIDRA_HOME=/path/to/ghidra
-# make gh
 ````
 
 ### Downloads & verification
@@ -100,7 +97,7 @@ make lint-docaddrs
 make export   # builds export/zk-inkjet-export-<UTCSTAMP>.tgz
 ```
 
-If `GHIDRA_HOME` is set, `make gh` regenerates `data/processed/io_callgraph.json`. Without Ghidra, the target is skipped.
+> Legacy headless Ghidra automation now lives in `docs/archive/ghidra_headless_cli.md`.
 
 ---
 

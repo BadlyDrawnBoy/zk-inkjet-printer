@@ -8,7 +8,7 @@ This document captures the historic investigation work on the ZK-INKJET handheld
 
 ## Quick Navigation (Firmware Control First)
 
-- Active roadmap and open items: `docs/firmware_mod_plan.md`
+- Legacy roadmap and open items: `docs/archive/firmware_mod_plan_legacy.md`
 - Reproducible procedures for every finding: `docs/analysis_traceability.md`
 - Offset catalogue for follow-up work: `docs/offset_catalog.md`
 - Bootloader methodology (command-level evidence): `docs/boot_analysis_methodology.md`
@@ -58,11 +58,11 @@ Earlier recommendations were to:
 3. Explore RES-HW.zkml for further resource formats.
 4. Preserve a detailed log of test parameters for future automation.
 
-These recommendations have since been superseded by the firmware modification roadmap; see `docs/firmware_mod_plan.md` for current priorities.
+These recommendations have since been superseded by later findings; see `docs/findings/` for current priorities. The older roadmap remains available at `docs/archive/firmware_mod_plan_legacy.md` for context.
 
 ## Appendix: ZK-INKJET UI/Graphics – Status & Method (2025-10-06)
 
-> Note: Archived tuning report on UI reconstruction. For active tasks, consult `docs/firmware_mod_plan.md`.
+> Note: Archived tuning report on UI reconstruction. For active tasks, consult the current findings or the legacy roadmap at `docs/archive/firmware_mod_plan_legacy.md`.
 
 ### Context
 

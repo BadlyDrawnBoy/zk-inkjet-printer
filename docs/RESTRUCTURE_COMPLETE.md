@@ -56,7 +56,7 @@ Moved to `docs/archive/old-structure/`:
 Root docs/ files kept:
 - `analysis_traceability.md` - Compact overview (96 lines, down from 1219)
 - `VERIFICATION_STATUS.md` - Current status
-- `firmware_mod_plan.md` - Planning
+- `archive/firmware_mod_plan_legacy.md` - Planning (archived)
 - `uart_control_consolidated.md` - Technical doc
 - `update_file_rules.md` - Update mechanism
 - `vendor_resources.md` - External links
@@ -114,7 +114,8 @@ docs/
 │
 ├── analysis_traceability.md           ✅ Compact overview
 ├── VERIFICATION_STATUS.md             ✅ Current status
-├── firmware_mod_plan.md
+├── archive/
+│   └── firmware_mod_plan_legacy.md
 ├── uart_control_consolidated.md
 ├── update_file_rules.md
 ├── vendor_resources.md
