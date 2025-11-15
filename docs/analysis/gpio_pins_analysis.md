@@ -338,7 +338,7 @@ This explains why direct searches for full addresses (e.g., 0xB8001010) returned
 ## 7. Cross-References
 
 **Related Documentation:**
-- `docs/soc_identification.md` - N32903K5DN SoC details
+- `docs/findings/chip_identification.md` - Nuvoton N32903K5DN SoC details
 - `docs/mmio_fingerprint.md` - Memory-mapped I/O register map
 - `docs/offset_catalog.md` - Function offset catalog
 

@@ -173,7 +173,7 @@
 
 ## References
 
-- **Detailed Analysis:** `docs/analysis/soc_identification.md`
+- **Detailed Analysis:** `docs/findings/chip_identification.md`
 - **MMIO Map:** `docs/findings/mmio_map.md`
 - **GPIO Analysis:** `docs/findings/gpio_configuration.md`
 - **Verification Status:** `docs/VERIFICATION_STATUS.md`

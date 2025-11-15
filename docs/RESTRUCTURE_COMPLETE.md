@@ -40,7 +40,7 @@ Moved to `docs/archive/old-structure/`:
 - `offset_catalog.md` - Important addresses (moved)
 
 **docs/analysis/** - Detailed analysis
-- `soc_identification.md` - Complete chip identification (moved)
+- `findings/chip_identification.md` - Complete chip identification (moved)
 - `gpio_pins_analysis.md` - Detailed GPIO analysis (moved)
 - `boot_analysis_methodology.md` - Boot process (moved)
 - `app_message_handlers.md` - Message handling (moved)
@@ -86,7 +86,7 @@ docs/
 │   └── offset_catalog.md
 │
 ├── analysis/                          ✅ Detailed analysis
-│   ├── soc_identification.md
+│   ├── findings/chip_identification.md
 │   ├── gpio_pins_analysis.md
 │   ├── boot_analysis_methodology.md
 │   └── app_message_handlers.md

@@ -23,7 +23,7 @@
 ### Root docs/ - Reference documents
 - `analysis_traceability.md` - Quick reference + session index
 - `VERIFICATION_STATUS.md` - Current verification status
-- `soc_identification.md` - Detailed SoC analysis
+- `findings/chip_identification.md` - Detailed SoC analysis (moved)
 - `gpio_pins_analysis.md` - Detailed GPIO analysis
 - etc.
 
