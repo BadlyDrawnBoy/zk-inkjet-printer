@@ -39,51 +39,40 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
-### 2. Decode the UI Blob
+### 2. Decode the UI Blob (legacy brute-force)
 
 ```bash
-python3 scripts/uiqvga_smart_decode.py \
+python3 scripts/legacy/uiqvga/uiqvga_smart_decode.py \
   --input data/raw/ZK-INKJET-UI-QVGA.bin \
   --output data/processed/UI_QVGA_480x480.png
 ```
 
-- Inspect the resulting PNG for seam artifacts.
-- Record the command in your session log.
+- Output still shows minor artifacts; a firmware-derived decoder is pending.
+- Record the command in your session log and link it from `docs/analysis_traceability.md`.
 
-### 3. Validate Parameters
+### 3. Optional Parameter Sweep (legacy)
 
 ```bash
-python3 scripts/uiqvga_autotune.py \
+python3 scripts/legacy/uiqvga/uiqvga_autotune.py \
   --input data/raw/ZK-INKJET-UI-QVGA.bin \
   --log data/processed/autotune.csv
 ```
 
-- Review `autotune.csv` for parameter combinations with low error metrics.
-- Update the front matter of [`docs/findings/firmware_functions.md`](../findings/firmware_functions.md) if new evidence improves confidence in display handlers.
+- Useful for comparing brute-force candidates; not a final decode.
 
-### 4. Stage Firmware Changes
+### 4. Stage Firmware Changes (when available)
 
-```bash
-# Example: patch resource container (placeholder)
-python3 scripts/zkml_replace_asset.py --input data/raw/ZK-INKJET-RES-HW.zkml --output data/processed/ZK-INKJET-RES-HW.patched.zkml --asset splash.png --replacement custom.png
-```
+- Store any patched binaries/resources under `data/processed/` with deterministic names.
+- Capture SHA-256 hashes alongside the files you intend to deploy.
+- Patch tooling for `.zkml`/APP is not bundled here; when you use external tools, document the exact commands in `docs/analysis_traceability.md`.
 
-- Ensure patched assets live in `data/processed/` with descriptive names.
-- Capture hashes for any modified binaries.
+### 5. Deploy & Verify (USB “MINI” mass storage)
 
-### 5. Flash & Verify
-
-```bash
-# Copy patched files to SD card (example mount point)
-sudo mount /dev/sdX1 /mnt/zk
-sudo cp data/processed/ZK-INKJET-RES-HW.patched.zkml /mnt/zk/ZK-INKJET-RES-HW.zkml
-sync
-sudo umount /mnt/zk
-```
-
-- Record UART output during first boot after flashing.
-- Compare behavior against expectations documented in [`docs/analysis/gpio_pins_analysis.md`](../analysis/gpio_pins_analysis.md) and [`docs/findings/mmio_map.md`](../findings/mmio_map.md).
-- Update your session log with observed results and rerun the verification summary script if confidence levels changed.
+1. Connect the printer via USB; it exposes a mass-storage device labelled “MINI”.
+2. Copy the patched file(s) (e.g., APP.bin or `ZK-INKJET-RES-HW.zkml`) onto that volume.
+3. Use the printer’s on-device Update menu to apply the files.
+4. Record console/UART output during the update and first boot.
+5. Compare behavior against expectations documented in [`docs/findings/mmio_map.md`](../findings/mmio_map.md) and update your session log plus verification tables if confidence changes.
 
 ## Incident Response
 

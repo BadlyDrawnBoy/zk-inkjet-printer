@@ -84,6 +84,12 @@ All upgrade literals live on `3:/` (the U-disk). No upgrade `.bin` strings are p
  └─ (optional) ZK-TIJSPS-800x480-UI.bin
 ```
 
+### Integrity checks (what we looked for)
+
+- **App binary:** No checksum/CRC routines or strings found (search for “crc”, “checksum”, “md5”, CRC16 polys 0x1021/0x8408 returned empty). The validator at `0x002BFDDC` only compares status bytes and stores flags.
+- **Boot binary:** Also no checksum/CRC routines/strings detected in `ZK-INKJET-NANO-BOOT.bin`.
+- **Implication:** Based on static analysis of APP/BOOT, there is no hash gate in the filename-match → queue → validator path. A live test (flip a benign byte and observe the device’s reaction/logs) would be the next step to confirm behavior on hardware.
+
 ## Cross-reference trail
 
 * `grep -n "\.bin" data/processed/app_strings_report.md` – reproduces the offsets above.
