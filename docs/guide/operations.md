@@ -14,9 +14,9 @@
 | Task | Command | Notes |
 | --- | --- | --- |
 | Run smoke tests | `make test` | Uses vendored pytest configuration. |
-| Decode UI graphics | `python3 scripts/uiqvga_smart_decode.py --input data/raw/ZK-INKJET-UI-QVGA.bin --output data/processed/UI_QVGA_480x480.png` | Produces 480×480 PNG. |
-| Explore decode parameters | `python3 scripts/uiqvga_autotune.py --input data/raw/ZK-INKJET-UI-QVGA.bin --log data/processed/autotune.csv` | Logs seam scores for later inspection. |
-| Note on UI decode | — | Current scripts are brute-force and leave minor artifacts; precise offsets likely need firmware RE via Ghidra bridge. |
+| Decode UI graphics (legacy) | `python3 scripts/legacy/uiqvga/uiqvga_smart_decode.py --input data/raw/ZK-INKJET-UI-QVGA.bin --output data/processed/UI_QVGA_480x480.png` | Produces 480×480 PNG with residual artifacts (brute-force). |
+| Explore decode parameters (legacy) | `python3 scripts/legacy/uiqvga/uiqvga_autotune.py --input data/raw/ZK-INKJET-UI-QVGA.bin --log data/processed/autotune.csv` | Logs seam scores; still brute-force. |
+| Note on UI decode | — | Remaining artifacts likely require extracting the decode routine via Ghidra bridge. |
 | Run verification summary script | `python tools/generate_verification_summary.py` | Updates documentation tables. |
 
 ## Verification Checklist
