@@ -18,7 +18,7 @@
 
 ## Navigating Detailed Analysis
 
-- **Hardware deep dives:** [`docs/analysis/gpio_pins_analysis.md`](../analysis/gpio_pins_analysis.md), [`docs/analysis/soc_identification.md`](../analysis/soc_identification.md)
+- **Hardware deep dives:** [`docs/analysis/gpio_pins_analysis.md`](../analysis/gpio_pins_analysis.md), [`docs/findings/chip_identification.md`](../findings/chip_identification.md)
 - **Boot process & loaders:** [`docs/analysis/boot_analysis_methodology.md`](../analysis/boot_analysis_methodology.md)
 - **Message handling:** [`docs/analysis/app_message_handlers.md`](../analysis/app_message_handlers.md)
 

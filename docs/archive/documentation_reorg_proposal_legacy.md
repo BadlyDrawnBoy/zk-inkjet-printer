@@ -1,4 +1,6 @@
-# Documentation Reorganization Proposal (2025-11)
+# Documentation Reorganization Proposal (2025-11) *(Archived)*
+
+> Archived: this proposal was implemented during the 2025-11 restructure. Current improvement ideas live in `docs/guide/research_notebook.md#suggested-enhancements`.
 
 ## 1. Current Observations
 

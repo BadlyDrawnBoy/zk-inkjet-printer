@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# NOTE: Legacy brute-force seam scorer; outputs still show artifacts.
 import os, itertools, numpy as np
 from PIL import Image
 

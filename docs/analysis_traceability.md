@@ -18,6 +18,7 @@ For detailed methodology, see `docs/methodology/mcp_workflow.md`.
 | 0xB800C000 = Doorbell | 95% | Literal pool + pattern | 2025-11-03 |
 | 0xB0000204 = Clock/Bus | 99% | Direct disassembly | 2025-11-03 |
 | Pin-Mux @ 0x31f34 | 99% | Function analysis | 2025-11-03 |
+| `ZK-INKJET-RES-HW.zkml` handled by `udisk_bulk_asset_update` | 90% | `ghidra-bridge`: `project_info`, `search_strings(\"RES\")`, `string_xrefs(0x0025d130)`, `disassemble_at(0x0025cfe0)`, `analyze_function_complete(0x0025cfe0)` | 2025-11-05 |
 
 **Detailed findings:** See `docs/findings/`
 
@@ -41,6 +42,22 @@ For detailed methodology, see `docs/methodology/mcp_workflow.md`.
 **Action:** Added verification status to all documents  
 **Result:** Clear distinction between facts and hypotheses  
 **Details:** `docs/VERIFICATION_STATUS.md`
+
+---
+
+## Recent Sessions (2025-11-05)
+
+### Resource File Usage
+**Finding:** `udisk_bulk_asset_update` copies `0:/ZK-INKJET-RES-HW.zkml` (and related OBDS paths) into internal flash via `update_copy_or_flash`.  
+**Method:** `ghidra-bridge` commands — `project_info`, `search_strings("RES")`, `string_xrefs(0x0025d130)`, `disassemble_at(0x0025cfe0)`, `analyze_function_complete(0x0025cfe0)`.  
+**Confidence:** 90% (single code-path observed; no runtime trace yet).  
+**Notes:** Same helper loop reuses message buffers to bulk-update handwriting FONT tables plus SPI flash blobs (`GT32L24M0140`, `GT30L24A3W`).
+
+### U-Disk Update Path Re-run
+**Finding:** Boot-time helper `maybe_update_from_udisk` (`0x0026887c`) invokes `update_copy_or_flash` twice (BOOT then APP) after `boot_holdkey_update_check` arms the pipeline.  
+**Method:** `ghidra-bridge` — `analyze_function_complete(0x0026887c)`, `analyze_function_complete(0x0026ccf8)`, `analyze_function_complete(0x0025b1ec)`.  
+**Confidence:** 90% (static control-flow only; hardware execution not re-verified).  
+**Notes:** Success path writes BOOT to default slot, then APP to `0x03000000`; both share shared status strings at `DAT_002688ec`.
 
 ---
 
@@ -93,4 +110,4 @@ For detailed methodology, see `docs/methodology/mcp_workflow.md`.
 
 ---
 
-**Last Updated:** 2025-11-03
+**Last Updated:** 2025-11-05

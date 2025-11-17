@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# uiqvga_hypersearch.py
+# uiqvga_hypersearch.py (legacy brute-force; artifacts remain)
 # Ziel: ZK-INKJET-UI-QVGA.bin (9 Tiles à 160x160) korrekt rekonstruieren.
 # Vorgehen: XOR 0xAAAA, BGR565, Tile-Order=col. Suche nach:
 #  - odd-line Basis-Shift s0

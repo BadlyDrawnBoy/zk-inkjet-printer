@@ -1,6 +1,6 @@
-# Project Status – ZK-INKJET Firmware Recon
+# Project Status – ZK-INKJET Firmware Recon *(Legacy)*
 
-_Last updated: 2025-10-11_
+> Archived snapshot (2025-10-11). Superseded by the findings in `docs/findings/` and the navigation hub at `docs/README.md`.
 
 ## High-Level Progress
 - ✅ **UI decoding pipeline**: `scripts/uiqvga_smart_decode.py` refactored with deterministic CLI defaults; hyper-search (`scripts/uiqvga_hypersearch.py`) now exports `data/processed/uiqvga_params.json` + `UI_QVGA_best.png`.

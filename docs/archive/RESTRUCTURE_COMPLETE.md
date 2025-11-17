@@ -1,9 +1,8 @@
-# Documentation Restructure - Complete ✅
+# Documentation Restructure - Complete ✅ (Archived)
 
-> **Status:** Documentation architecture is stable as of 2025-11-03. Use the new audience guides under [`docs/guide/`](guide/) for day-to-day navigation.
-> **Next improvements:** Track incremental documentation ideas inside the [research notebook guide](guide/research_notebook.md#suggested-enhancements) instead of reopening this report.
+> Archived summary of the 2025-11-03 documentation restructure. For active navigation, use `docs/README.md` and the audience guides under `docs/guide/`. For ongoing improvement ideas, see `docs/guide/research_notebook.md#suggested-enhancements`.
 
-**Date:** 2025-11-03
+**Date:** 2025-11-03  
 **Status:** DONE
 
 ---
@@ -40,7 +39,7 @@ Moved to `docs/archive/old-structure/`:
 - `offset_catalog.md` - Important addresses (moved)
 
 **docs/analysis/** - Detailed analysis
-- `soc_identification.md` - Complete chip identification (moved)
+- `findings/chip_identification.md` - Complete chip identification (moved)
 - `gpio_pins_analysis.md` - Detailed GPIO analysis (moved)
 - `boot_analysis_methodology.md` - Boot process (moved)
 - `app_message_handlers.md` - Message handling (moved)
@@ -56,7 +55,7 @@ Moved to `docs/archive/old-structure/`:
 Root docs/ files kept:
 - `analysis_traceability.md` - Compact overview (96 lines, down from 1219)
 - `VERIFICATION_STATUS.md` - Current status
-- `firmware_mod_plan.md` - Planning
+- `archive/firmware_mod_plan_legacy.md` - Planning (archived)
 - `uart_control_consolidated.md` - Technical doc
 - `update_file_rules.md` - Update mechanism
 - `vendor_resources.md` - External links
@@ -86,7 +85,7 @@ docs/
 │   └── offset_catalog.md
 │
 ├── analysis/                          ✅ Detailed analysis
-│   ├── soc_identification.md
+│   ├── findings/chip_identification.md
 │   ├── gpio_pins_analysis.md
 │   ├── boot_analysis_methodology.md
 │   └── app_message_handlers.md
@@ -114,7 +113,8 @@ docs/
 │
 ├── analysis_traceability.md           ✅ Compact overview
 ├── VERIFICATION_STATUS.md             ✅ Current status
-├── firmware_mod_plan.md
+├── archive/
+│   └── firmware_mod_plan_legacy.md
 ├── uart_control_consolidated.md
 ├── update_file_rules.md
 ├── vendor_resources.md

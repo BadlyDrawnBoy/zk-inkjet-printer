@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Legacy helper: quick render attempt for UI-QVGA blob (brute-force; artifacts remain).
 from PIL import Image
 import numpy as np
 

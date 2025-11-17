@@ -44,9 +44,6 @@ These printers typically sell for ~€50–60 under various brands (e.g., **Luqe
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 make test   # quick smoke test
-# optional:
-# export GHIDRA_HOME=/path/to/ghidra
-# make gh
 ````
 
 ### Downloads & verification
@@ -67,16 +64,16 @@ sha256sum -c data/raw/CHECKSUMS.repo.txt    # verifies repo-tracked artifacts
 ```bash
 pip install numpy pillow
 
-# Decode UI QVGA blob → 480×480 PNG
-python3 scripts/uiqvga_smart_decode.py \
+# Decode UI QVGA blob → 480×480 PNG (legacy brute-force; artifacts remain)
+python3 scripts/legacy/uiqvga/uiqvga_smart_decode.py \
   --input  data/raw/ZK-INKJET-UI-QVGA.bin \
   --output data/processed/UI_QVGA_480x480.png
 
-# Optional: parameter search to minimize seams/text drift
-python3 scripts/uiqvga_hypersearch.py --input data/raw/ZK-INKJET-UI-QVGA.bin
+# Optional: parameter search to minimize seams/text drift (legacy brute-force)
+python3 scripts/legacy/uiqvga/uiqvga_hypersearch.py --input data/raw/ZK-INKJET-UI-QVGA.bin
 ```
 
-More helpers: `uiqvga_autotune.py`, `uiqvga_decode_sweep.py`, resource carvers, string scanners, callgraph generators.
+More helpers (legacy brute-force): `scripts/legacy/uiqvga/uiqvga_autotune.py`, `uiqvga_decode_sweep.py`. Callgraph/resource tools remain under `scripts/`.
 
 ---
 
@@ -100,7 +97,7 @@ make lint-docaddrs
 make export   # builds export/zk-inkjet-export-<UTCSTAMP>.tgz
 ```
 
-If `GHIDRA_HOME` is set, `make gh` regenerates `data/processed/io_callgraph.json`. Without Ghidra, the target is skipped.
+> Legacy headless Ghidra automation now lives in `docs/archive/ghidra_headless_cli.md`.
 
 ---
 

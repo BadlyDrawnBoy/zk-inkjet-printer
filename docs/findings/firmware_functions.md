@@ -154,6 +154,18 @@ struct MessageEntry {
 
 **Needs:** RAM dump to verify runtime behavior
 
+### Upgrade UI Handlers (queue maintenance)
+**Status:** ⚠️ LIKELY  
+**Confidence:** 85–90%
+
+- **Update complete @ 0x002C2048 (file+0x000C2048)** — clamps queue depth `[base+0x144]`, updates head `[base+0x14C]` via the 0x66_666_667 multiply, and forces the status banner to the record’s VRAM pointer before exiting.
+- **No upgrade found @ 0x002C47F0 (file+0x000C47F0)** — compacts 0x14-byte queue records, recomputes the head pointer (divide-by-10 pattern), and cleans the queue when nothing matches.
+- **USB/U-disk error @ 0x002C4524 (file+0x000C4524)** — slides records down in 8/16-byte strides, shrinks the active window, and bubbles USB errors to the front.
+- **Upgrade found (staging) @ 0x002C28D0 (file+0x000C28D0)** — chains through UI/formatter helpers (`0x2C70F4`, `0x2C7334`, `0x2C6CA0`, `0x2C61DC`, `0x28ACF0`), then the notifier. Stages metadata/UI only; no checksum/hash logic observed.
+- **File-open failed @ 0x002C3A94 (file+0x000C3A94)** — thin error wrapper reached when the deeper handler cannot open a descriptor.
+
+**Note:** No checksum/CRC routines are invoked along this handler/validator path; filename matching and queue maintenance drive the upgrade UI.
+
 ---
 
 ### Hardware Update @ 0x00230E04

@@ -1,4 +1,6 @@
-# Firmware Modification Roadmap
+# Firmware Modification Roadmap *(Legacy)*
+
+> Archived 2025-11 — kept for historical context only. Much of the evidence cited here (UART hopes, missing reports) was never verified. For active findings, use `docs/findings/` plus `docs/analysis_traceability.md`.
 
 This roadmap tracks the critical paths toward gaining control over the ZK-INKJET firmware (UART access, resource injection, update interception). Each item references supporting analyses and links to executable commands where applicable.
 

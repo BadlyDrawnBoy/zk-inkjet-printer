@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# NOTE: Archived legacy headless workflow.
+#       Superseded by the ghidraMCP tooling documented in docs/archive/ghidra_headless_cli.md.
+
 # Kurze Log-Funktion
 msg() { echo "[gh] $*"; }
 

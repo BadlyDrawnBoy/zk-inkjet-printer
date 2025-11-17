@@ -24,7 +24,7 @@ pdftotext N3290X.PDF - | grep -i "ARM926"
 ```
 
 **Artifacts:**
-- `docs/soc_identification.md` - Full analysis with evidence chain
+- `docs/findings/chip_identification.md` - Full analysis with evidence chain
 - `docs/mmio_fingerprint.md` - Register map from code analysis
 - `docs/sessions/session-2025-01-25-soc-identification.md` - Session log
 
@@ -1145,17 +1145,17 @@ No intermediate writes touch `r7` between the validator call and the next compar
 **Details:** See docs/VERIFICATION_STATUS.md
 
 **Documents Updated:**
-- docs/soc_identification.md - Updated to N32903K5DN, confidence 98%
+- docs/findings/chip_identification.md - Updated to N32903K5DN, confidence 98%
 - docs/N32903U5DN_K5DN_CheatCheet.txt - Added chip identification section
 - docs/mmio_fingerprint.md - Added verification status to all sections
 - docs/offset_catalog.md - Added verification summary
 - docs/VERIFICATION_STATUS.md - NEW: Complete verification status document
 
-**Key Findings:**
-- Chip confirmed: N32903K5DN (K5DN = no external SDRAM)
-- Package: LQFP-128 with N32903U5DN pinout
-- Marking: "DWIN M5" (custom branding)
-- Corrected: GPB[2-5] NOT configured (previously assumed "used as GPIO")
+- **Key Findings:**
+  - Chip confirmed: N32903K5DN (K5DN = no external SDRAM)
+  - Package: LQFP-128 with N32903U5DN pinout
+  - Marking: "DWIN M5" (custom branding)
+  - Corrected: GPB[2-5] NOT configured (previously assumed "used as GPIO")
 
 **False Positives Corrected:**
 - GPB[2-5] pin usage
@@ -1212,7 +1212,7 @@ ghidra-bridge---read_bytes --address 0x00230f34 --length 4
 
 **Documents Updated:**
 - `docs/mmio_fingerprint.md` - Corrected Doorbell address
-- `docs/soc_identification.md` - Corrected MMIO map
+- `docs/findings/chip_identification.md` - Corrected MMIO map reference
 - `docs/VERIFICATION_STATUS.md` - Updated verification status
 
 **Corrected False Positives:**

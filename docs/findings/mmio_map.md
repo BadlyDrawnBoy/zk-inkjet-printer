@@ -117,7 +117,7 @@ str r5,[r12,#0x0]       ; Write command (trigger)
 ## Cross-References
 
 - **Detailed Analysis:** `docs/mmio_fingerprint.md`
-- **SoC Overview:** `docs/soc_identification.md`
+- **SoC Overview:** `docs/findings/chip_identification.md`
 - **Hardware Reference:** `docs/N32903U5DN_K5DN_CheatCheet.txt`
 - **Verification Status:** `docs/VERIFICATION_STATUS.md`
 

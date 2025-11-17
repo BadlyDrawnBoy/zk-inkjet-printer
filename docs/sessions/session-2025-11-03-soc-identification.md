@@ -72,7 +72,7 @@ Documented in `docs/mmio_fingerprint.md`:
 ## Artifacts Created
 
 ### Documentation
-- `docs/soc_identification.md` - Full analysis with evidence chain
+- `docs/findings/chip_identification.md` - Full analysis with evidence chain
 - `docs/mmio_fingerprint.md` - Register map from code analysis
 - `docs/sessions/session-2025-01-25-soc-identification.md` - This file
 

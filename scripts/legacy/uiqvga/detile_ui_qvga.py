@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# detile_ui_qvga.py – 3x3 Tiles à 160x160 (gesamt 480x480), 16 bpp RGB565
+# detile_ui_qvga.py – 3x3 Tiles à 160x160 (gesamt 480x480), 16 bpp RGB565 (legacy helper for brute-force decode)
 
 import argparse, os, sys
 import numpy as np

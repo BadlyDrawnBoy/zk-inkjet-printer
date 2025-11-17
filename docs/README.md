@@ -44,7 +44,7 @@ Auto-generated summary sourced from findings front matter. Regenerate via `pytho
 ## Quick Links
 
 - [`analysis_traceability.md`](analysis_traceability.md) – Command-level provenance index.
-- [`firmware_mod_plan.md`](firmware_mod_plan.md) – Future experimentation roadmap.
+- [`archive/firmware_mod_plan_legacy.md`](archive/firmware_mod_plan_legacy.md) – Retired experimentation roadmap (pre-Nuvoton confirmation).
 - [`uart_control_consolidated.md`](uart_control_consolidated.md) – UART interaction details.
 - [`vendor_resources.md`](vendor_resources.md) – Official manuals and SDK references.
 - [`archive/README.md`](archive/README.md) – Why and when to consult historical files.

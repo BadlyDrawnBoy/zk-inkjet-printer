@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# uiqvga_decode_sweep.py
+# uiqvga_decode_sweep.py (legacy brute-force; artifacts remain)
 # Testet: XOR (konstant/alternierend), Byte-Swap, BGR, Tile-Order, Zeilen-Shift.
 
 import os, itertools, numpy as np

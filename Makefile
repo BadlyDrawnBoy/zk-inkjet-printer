@@ -1,4 +1,4 @@
-.PHONY: test lint-docaddrs export gh
+.PHONY: test lint-docaddrs export
 
 test:
 	python3 -m pytest -q
@@ -8,6 +8,3 @@ lint-docaddrs:
 
 export:
 	tools/make_export.sh --with-binaries
-
-gh:
-	scripts/gh.sh

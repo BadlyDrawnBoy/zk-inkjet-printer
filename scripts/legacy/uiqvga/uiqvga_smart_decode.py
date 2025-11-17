@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # uiqvga_smart_decode.py
-# Sucht automatisch die "beste" Darstellung:
-# - XOR: konstant AAAA, zeilenweise alt AAAA/5555, spaltenweise alt AAAA/5555, checkerboard
-# - ByteSwap an/aus, BGR an/aus
-# - Tile-Order: row, col, serpentine-row
-# - Zeilen-Shift für ungerade Zeilen: -2..+2
-# Scoring: Kamm-Artefakt (even/odd), + Naht an 160/320 px minimieren
+# NOTE: Legacy brute-force decoder. Produces a usable image with artifacts; preserved for historical reference.
+# - Sucht automatisch die "beste" Darstellung:
+#   - XOR: konstant AAAA, zeilenweise alt AAAA/5555, spaltenweise alt AAAA/5555, checkerboard
+#   - ByteSwap an/aus, BGR an/aus
+#   - Tile-Order: row, col, serpentine-row
+#   - Zeilen-Shift für ungerade Zeilen: -2..+2
+# - Scoring: Kamm-Artefakt (even/odd), + Naht an 160/320 px minimieren
 
 import os, itertools, numpy as np
 from PIL import Image

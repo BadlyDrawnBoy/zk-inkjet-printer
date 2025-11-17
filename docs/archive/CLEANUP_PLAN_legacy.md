@@ -1,4 +1,6 @@
-# Historical Cleanup Plan (Superseded)
+# Historical Cleanup Plan (Superseded / Archived)
+
+> Archived: superseded by the completed restructure documented in `docs/RESTRUCTURE_COMPLETE.md`. Kept only for historical reference.
 
 > This file records the documentation cleanup proposal drafted before the 2025-11 restructure. The plan has already been executed.
 

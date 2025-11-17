@@ -1,12 +1,14 @@
 # Python
 __pycache__/
 *.py[cod]
-.venv/ venv/
+.venv/
+venv/
 
 # OS/IDE
 .DS_Store
 Thumbs.db
-.idea/ .vscode/
+.idea/
+.vscode/
 
 # Große/unnötige Rohdaten – NICHT in Git
 data/raw/sdcard.work.img

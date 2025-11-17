@@ -72,7 +72,7 @@ across multiple session documents. Treat it as the single entry point for live s
 | `docs/analysis_traceability.md` | Reproducible command recipes for every artifact and experiment. |
 | `docs/offset_catalog.md` | Canonical offsets, field layouts, and pointer destinations. |
 | `docs/update_file_rules.md` | Upgrade file matcher logic and literal tables. |
-| `docs/firmware_mod_plan.md` | Strategy for safe experimentation (patching, flashing, guard rails). |
+| `docs/archive/firmware_mod_plan_legacy.md` | Strategy for safe experimentation (patching, flashing, guard rails) — legacy. |
 | `docs/HACKING_UART.md` | Hardware-level UART probing notes and pinouts. |
 | `docs/archive/2025-10-10-session-notes.md` | Historical session handoff, brief, and status details preserved for context. |
 
